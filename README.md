@@ -1,4 +1,4 @@
-# Angular Example [![Build Status][travis-image]][travis-url] [![Code Climate][codeclimate-image]][codeclimate-url]
+# Angular Example
 
 ## Requirements
 
