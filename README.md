@@ -1,11 +1,10 @@
-# UI.Codemirror directive [![Build Status][travis-image]][travis-url] [![Code Climate][codeclimate-image]][codeclimate-url]
-
-This directive allows you to add [CodeMirror](http://codemirror.net/) to your textarea elements.
+# Angular Example [![Build Status][travis-image]][travis-url] [![Code Climate][codeclimate-image]][codeclimate-url]
 
 ## Requirements
 
-- AngularJS 1.3.x
-- [CodeMirror 4.8.x](https://github.com/marijnh/CodeMirror)
+- AngularJS 1.2.6
+- [CodeMirror 4.3.x](https://github.com/marijnh/CodeMirror)
+- ui-codemirror 0.1.6
 
 
 ## Usage
@@ -13,118 +12,13 @@ This directive allows you to add [CodeMirror](http://codemirror.net/) to your te
 You can get it from [Bower](http://bower.io/)
 
 ```sh
-bower install angular-ui-codemirror
+npm install
 ```
 
-This will copy the UI.Codemirror files into a `bower_components` folder, along with its dependencies. Load the script files in your application:
-
-```html
-<link rel="stylesheet" type="text/css" href="bower_components/codemirror/lib/codemirror.css">
-<script type="text/javascript" src="bower_components/codemirror/lib/codemirror.js"></script>
-<script type="text/javascript" src="bower_components/angular/angular.js"></script>
-<script type="text/javascript" src="bower_components/angular-ui-codemirror/ui-codemirror.js"></script>
+```sh
+bower install
 ```
 
-Add the UI.Codemirror module as a dependency to your application module:
-
-```javascript
-var myAppModule = angular.module('MyApp', ['ui.codemirror']);
-```
-
-Finally, add the directive to your html,
-as attribute :
-
-```html
-// Not well supported yet but still... We need feedbacks to improve it...
-<textarea ui-codemirror></textarea>
-
-<div ui-codemirror></div>
-```
-
-as element :
-```xml
-<ui-codemirror></ui-codemirror>
-```
-
-
-## Options
-
-All the [Codemirror configuration options](http://codemirror.net/doc/manual.html#config) can be passed through the directive.
-
-```javascript
-myAppModule.controller('MyController', [ '$scope', function($scope) {
-	$scope.editorOptions = {
-		lineWrapping : true,
-		lineNumbers: true,
-		readOnly: 'nocursor',
-		mode: 'xml',
-	};
-}]);
-```
-
-If you update this variable with the new values, they will be merged and the ui will be updated.
-
-```xml
-<ui-codemirror ui-codemirror-opts="editorOptions"></ui-codemirror>
-```
-
-### Working with ng-model
-
-The ui-codemirror directive plays nicely with ng-model.
-
-The ng-model will be watched for to set the CodeMirror document value (by [setValue](http://codemirror.net/doc/manual.html#setValue)).
-
-_The ui-codemirror directive stores and expects the model value to be a standard javascript String._
-
-### ui-refresh directive
-
-If you apply the refresh directive to element then any change to do this scope value will result to a [refresh of the CodeMirror instance](http://codemirror.net/doc/manual.html#refresh).
-
-_The ui-refresh directive expects a scope variable that can be any thing...._
-
-```html
-<div ui-codemirror ng-model="x" ui-refresh='isSomething'></div>
-```
-
-Now you can set the _isSomething_ in the controller scope.
-
-```javascript
-$scope.isSomething = true;
-```
-
-Note: the comparison operator between the old and the new value is "!=="
-
-
-### CodeMirror instance direct access
-
-For more interaction with the CodeMirror instance in the directive, we provide a direct access to it.
-Using
-
-```html
-<div ui-codemirror="{ onLoad : codemirrorLoaded }" ></div>
-```
-
-the `$scope.codemirrorLoaded` function will be called with the [CodeMirror editor instance](http://codemirror.net/doc/manual.html#CodeMirror) as first argument
-
-```javascript
-myAppModule.controller('MyController', [ '$scope', function($scope) {
-
-  $scope.codemirrorLoaded = function(_editor){
-    // Editor part
-    var _doc = _editor.getDoc();
-    _editor.focus();
-
-    // Options
-    _editor.setOption('firstLineNumber', 10);
-    _doc.markClean()
-
-    // Events
-    _editor.on("beforeChange", function(){ ... });
-    _editor.on("change", function(){ ... });
-  };
-
-}]);
-```
 
 ## Testing
 
