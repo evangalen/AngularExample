@@ -9,15 +9,12 @@
 
 ## Usage
 
-You can get it from [Bower](http://bower.io/)
+You can get it from (https://github.com/chungminhho/AngularExample.git)
 
 ```sh
-npm install
+ git clone https://github.com/chungminhho/AngularExample.git
 ```
 
-```sh
-bower install
-```
 
 
 ## Testing
