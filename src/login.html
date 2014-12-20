@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html ng-app="app.login">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/css/docs.min.css"/>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
+</head>
+<body>
+<style type="text/css">
+    html,body {
+        height:100%;
+    }
+
+    h1 {
+        font-family: Arial,sans-serif
+        font-size:80px;
+        color:#DDCCEE;
+    }
+
+    .lead {
+        color:#DDCCEE;
+    }
+
+
+    /* Custom container */
+    .container-full {
+        margin: 0 auto;
+        width: 100%;
+        min-height:100%;
+        background-color:#110022;
+        color:#eee;
+        overflow:hidden;
+    }
+
+    .container-full a {
+        color:#efefef;
+        text-decoration:none;
+    }
+
+    .v-center {
+        margin-top:7%;
+    }
+    .form-control {
+        margin-top: 15px;
+        height: 44px;
+    }
+</style>
+<div class="container-full" data-ng-controller="LoginCtrl">
+
+    <div class="row">
+
+        <div class="col-lg-12 text-center v-center">
+
+            <h1>ALCATEL LUCENT 5520</h1>
+            <!--<h2>ACCESS MANAGEMENT SYSTEM (AMS)</h2>-->
+
+
+            <div class="container" style="width: 400px;">
+                <div data-ng-show="alert.done">
+                    <alert type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
+                </div>
+                <form class="form-signin" role="form" data-ng-submit="submit()">
+                    <label for="inputUsername" class="sr-only">Username</label>
+                    <input type="username" data-ng-model="username" id="inputUsername" class="form-control" placeholder="Username address" required autofocus>
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" data-ng-model="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div> <!-- /row -->
+
+    <div class="row">
+
+        <div class="col-lg-12 text-center v-center" style="font-size:39pt;">
+            <a href="#"><i class="icon-google-plus"></i></a> <a href="#"><i class="icon-facebook"></i></a>  <a href="#"><i class="icon-twitter"></i></a> <a href="#"><i class="icon-github"></i></a> <a href="#"><i class="icon-pinterest"></i></a>
+        </div>
+
+    </div>
+
+    <br><br><br><br><br>
+
+</div>
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="../bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="../bower_components/angular-cookies/angular-cookies.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js"></script>
+<script src="common/security/security.js"></script>
+<script src="common/resources/user.js"></script>
+<script src="module/login/login.js"></script>
+</body>
+</html>

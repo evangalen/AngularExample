@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html data-ng-app="App" data-ng-controller="MainCtrl">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title data-ng-bind="PageService.getTitle()"></title>
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/css/docs.min.css"/>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="../bower_components/codemirror/lib/codemirror.css"/>
+    <link rel="stylesheet" href="../bower_components/codemirror/addon/hint/show-hint.css"/>
+
+    <link rel="stylesheet" href="styles/main.css"/>
+
+</head>
+<body>
+<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href ui-sref="dashboard" class="navbar-brand">Taskcenter</a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+                <li ui-sref-active="active">
+                    <a href ui-sref="getting-started">Getting started</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a href ui-sref="tasks">Tasks</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a href ui-sref="components">Components</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a href ui-sref="resources">Resources</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a href ui-sref="customize">Customize</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li data-ng-show="adminMode"><a href><span class="glyphicon glyphicon-user"></span> <span data-ng-bind="userMode"></span></a></li>
+                <li ng-class="{active: $state.includes('contacts')}">
+                    <a ui-sref="contacts.list">Contacts</a>
+                    <!--<p ui-view="hint" class="navbar-text pull-right"></p>-->
+                </li>
+                <li><a href="/" data-ng-bind="currentUser"></a></li>
+                <li><a href="/">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<!-- Begin page content -->
+<div ui-view></div>
+
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="../bower_components/angular-cookies/angular-cookies.min.js"></script>
+<script src="../bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="../bower_components/angular-ui-codemirror/ui-codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js"></script>
+<!--CodeMirror-->
+<script src="../bower_components/codemirror/lib/codemirror.js"></script>
+<script src="../bower_components/codemirror/mode/javascript/javascript.js"></script>
+<script src="../bower_components/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="../bower_components/codemirror/mode/xml/xml.js"></script>
+<script src="../bower_components/codemirror/addon/hint/show-hint.js"></script>
+<script src="../bower_components/codemirror/addon/hint/javascript-hint.js"></script>
+<script src="../bower_components/codemirror/addon/hint/anyword-hint.js"></script>
+<script src="../bower_components/codemirror/addon/hint/html-hint.js"></script>
+<script src="../bower_components/codemirror/addon/hint/html-hint.js"></script>
+<script src="../bower_components/codemirror/addon/hint/xml-hint.js"></script>
+
+<!--Resource-->
+<script src="common/resources/tasks.js"></script>
+<script src="common/resources/user.js"></script>
+
+<!--Service-->
+<script src="common/services/pageService.js"></script>
+
+<!--Directive-->
+<script src="common/directives/dynamicTemplates/dynamicTemplates.js"></script>
+
+<!--Securities-->
+<script src="common/security/security.js"></script>
+<!--Module-->
+<script src="module/app.js"></script>
+<!--login-->
+<script src="module/login/login.js"></script>
+<!--dashboard-->
+<script src="module/dashboard/dashboard.js"></script>
+<!--tasks-->
+<script src="module/tasks/tasks.js"></script>
+<script src="module/tasks/details/details.js"></script>
+<script src="module/tasks/auth-tasks/editTask.js"></script>
+<script src="module/tasks/auth-tasks/authorTasksHelper.js"></script>
+<script src="module/tasks/auth-tasks/createTask.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<div class="bs-docs-header bs-docs-header-modules" id="content">
+    <div class="container">
+        <h1>Browser Tasks</h1>
+        <!--<p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body > .container</code>.</p>-->
+        <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
+    </div>
+</div>
+<div class="container">
+    <!--<div class="page-header">-->
+        <!--<h1>Browser Task</h1>-->
+    <!--</div>-->
+    <div class="row">
+        <div class="col-sm-6 col-md-3 col-task" ng-repeat="task in tasks">
+            <div class="thumbnail">
+                <p class="top">
+                    <a href ui-sref="tasks.detail({id: task.id})"><span class="label label-info">Action</span></a>
+                    <a href ui-sref="tasks.edit({id: task.id})"><span class="label label-warning">Edit</span></a>
+                    <a href ng-click="delete(task)"><span class="label label-danger">Delete</span></a>
+                </p>
+                <hr/>
+                <div class="caption">
+                    <h3 data-ng-bind="task.name"></h3>
+                    <!--<span class="badge">42</span>-->
+                    <p data-ng-bind="task.description"></p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-task">
+            <div class="thumbnail" style="text-align: center">
+                <a href ui-sref="tasks.create" style="font-size: 76px; text-decoration: none">
+                    <span>+</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div ui-view></div>
+</div>

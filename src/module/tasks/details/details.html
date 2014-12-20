@@ -1,0 +1,45 @@
+<div class="bs-docs-header bs-docs-header-modules" id="content">
+    <div class="container">
+        <h1 data-ng-bind="model.title"></h1>
+
+        <p data-ng-bind="model.description"></p>
+        <div id="carbonads-container">
+            <div class="carbonad">
+                <div class="btn-group btn-group-lg" role="group" aria-label="Large button group">
+                    <button type="button" class="btn btn-default">Start</button>
+                    <button type="button" class="btn btn-default">Edit</button>
+                    <button type="button" class="btn btn-default">Delete</button>
+                </div>
+
+                <div id="azcarbon">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class=row">
+        <div class="col-md-12">
+            <h3 data-ng-bind="currentTask"></h3>
+
+            <p data-ng-bind="currentDescription"></p>
+        </div>
+
+        <div class="col-sm-offset-10 col-sm-2">
+            <button class="btn btn-primary" ng-click="launch()">Launch</button>
+        </div>
+        <div class="col-md-6 col-code">
+            <span class="badge">HTML</span>
+            <div dynamic-templates="inputModel"></div>
+        </div>
+        <div class="col-md-6 col-code">
+            <span class="badge">Javascript</span>
+            <textarea ui-codemirror="jsOption" ng-model="jsModel"></textarea>
+        </div>
+        <div class="col-md-6 col-code">
+            <span class="badge">Output</span>
+            <div dynamic-templates="outputModel"></div>
+        </div>
+    </div>
+</div>
