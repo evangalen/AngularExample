@@ -69,6 +69,7 @@
     ////////////////
 
     function activate() {
+      $scope.title = vm.title;
       PageService.setTitle(vm.title);
       loadTasks();
 

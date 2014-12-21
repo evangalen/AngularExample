@@ -27,6 +27,10 @@
       $scope.inputModel = decodeURI(taskData.input);
       $scope.jsModel = decodeURI(taskData.behaviour);
       $scope.outputModel = decodeURI(taskData.output);
+
+      $scope.launch = function () {
+        $scope.dynamicOutput = $scope.outputModel;
+      }
     }
   }
 })();

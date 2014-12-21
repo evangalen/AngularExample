@@ -1,45 +1,102 @@
-<div class="bs-docs-header bs-docs-header-modules" id="content">
-    <div class="container">
-        <h1 data-ng-bind="model.title"></h1>
+<!--<main-header title="model.title" sub-title="model.description"></main-header>-->
+<style>
+    #singleTheme .theme_splash {
+        text-align: center;
+    }
 
-        <p data-ng-bind="model.description"></p>
-        <div id="carbonads-container">
-            <div class="carbonad">
-                <div class="btn-group btn-group-lg" role="group" aria-label="Large button group">
-                    <button type="button" class="btn btn-default">Start</button>
-                    <button type="button" class="btn btn-default">Edit</button>
-                    <button type="button" class="btn btn-default">Delete</button>
+    #singleTheme .theme_splash h1 {
+        font-size: 40px;
+        margin-bottom: 45px;
+    }
+
+    #singleTheme .theme_screenshot img {
+        border-radius: 3px;
+        /* box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4); */
+        border: 4px solid rgba(255, 255, 255, 0.2);
+        max-width: 100%;
+    }
+
+    #singleTheme .demo_btn {
+        background: rgba(255, 255, 255, 0.25);
+        margin-top: 30px;
+        width: 100%;
+    }
+
+    #singleTheme .demo_btn, #singleTheme .demo_btn {
+        color: #fff;
+        border-color: #ffffff;
+        width: 650px;
+    }
+
+    #singleTheme .buy_options .buy_btn {
+        background: #f25454;
+        color: #ffffff;
+        font-weight: 700;
+        margin: 0 auto;
+        width: 230px;
+    }
+
+    #singleTheme .buy_options #licType {
+        background: #4d6e86;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        color: #fff;
+        margin: 30px auto 15px;
+        width: 230px;
+    }
+
+    .containerItem {
+        max-width: none !important;
+        width: 970px;
+    }
+</style>
+<div id="singleTheme">
+    <div class="mainHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 theme_splash">
+                    <h1 data-ng-bind="model.title"></h1>
                 </div>
+                <div class="col-xs-8 theme_screenshot text-center" style="text-align: left">
+                    <div dynamic-templates="inputModel"></div>
+                    <!--<img src="http://bootstrapbay.com/thumbs/themes/BCAE2F3.jpg" alt="DejaVu - One Page Responsive">					<a href="/preview/dejavu-one-page-responsive-BCAE2F3" class="btn btn-white btn-lg demo_btn" target="_blank">Live Demo</a>-->
+                </div>
+                <div class="col-xs-4 buy_options text-center">
+                    <button id="buy_now" data-ng-click="launch()" class="btn btn-danger btn-lg buy_btn"
+                            data-toggle="modal" data-target="#log_modal">Launch
+                    </button>
 
-                <div id="azcarbon">
+                    <select id="licType" name="licType" class="form-control">
+                        <option value="1">Edit</option>
+                        <option value="2">Delete</option>
+                    </select>
+
+                    <div class="license-desc" data-ng-bind="model.description"></div>
+                    <div class="license_details">
+                        <a href="/licenses">License details »</a>
+                    </div>
 
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 <div class="container">
     <div class=row">
-        <div class="col-md-12">
-            <h3 data-ng-bind="currentTask"></h3>
 
-            <p data-ng-bind="currentDescription"></p>
-        </div>
-
-        <div class="col-sm-offset-10 col-sm-2">
-            <button class="btn btn-primary" ng-click="launch()">Launch</button>
-        </div>
-        <div class="col-md-6 col-code">
-            <span class="badge">HTML</span>
-            <div dynamic-templates="inputModel"></div>
-        </div>
-        <div class="col-md-6 col-code">
-            <span class="badge">Javascript</span>
-            <textarea ui-codemirror="jsOption" ng-model="jsModel"></textarea>
-        </div>
-        <div class="col-md-6 col-code">
-            <span class="badge">Output</span>
-            <div dynamic-templates="outputModel"></div>
-        </div>
+        <div dynamic-templates="dynamicOutput"></div>
+        <br/><br/><br/>
+        <!--<div class="col-sm-offset-10 col-sm-2">-->
+        <!--<button class="btn btn-primary" ng-click="launch()">Launch</button>-->
+        <!--</div>-->
+        <!--<div class="col-md-12 col-code">-->
+        <!--<span class="badge">HTML</span>-->
+        <!--<div dynamic-templates="inputModel"></div>-->
+        <!--</div>-->
+        <!--<div class="col-md-12 col-code">-->
+        <!--<span class="badge">Output</span>-->
+        <!--<div dynamic-templates="outputModel"></div>-->
+        <!--</div>-->
     </div>
 </div>

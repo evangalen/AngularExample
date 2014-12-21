@@ -1,47 +1,6 @@
-<style>
-    .mainHeader h1 {
-        font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        margin: 0;
-        font-size: 34px;
-        font-weight: 300;
-    }
-</style>
-<div class="mainHeader">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 clearfix">
-                <h1>Browser Tasks</h1>
-            </div>
-        </div>
-    </div>
-</div>
+<main-header title="title"></main-header>
 <div class="container">
     <div class="row">
-        <div class="col-sm-6 col-md-3 col-task" ng-repeat="task in tasks">
-            <div class="thumbnail">
-                <p class="top">
-                    <a href ui-sref="tasks.detail({id: task.id})"><span class="label label-info">Action</span></a>
-                    <a href ui-sref="tasks.edit({id: task.id})"><span class="label label-warning">Edit</span></a>
-                    <a href ng-click="delete(task)"><span class="label label-danger">Delete</span></a>
-                </p>
-                <hr/>
-                <div class="caption">
-                    <h3 data-ng-bind="task.name"></h3>
-                    <!--<span class="badge">42</span>-->
-                    <p data-ng-bind="task.description"></p>
-
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3 col-task">
-            <div class="thumbnail" style="text-align: center">
-                <a href ui-sref="tasks.create" style="font-size: 76px; text-decoration: none">
-                    <span>+</span>
-                </a>
-            </div>
-        </div>
-
-
         <div id="catListings" class="mainWrap clearfix">
         <div class="col-xs-12">
         <style>
@@ -92,7 +51,9 @@
         </style>
         <div class="sorting clearfix">
             <div class="totalItems">
-                <i class="fa fa-search"></i>41 items
+                <i class="fa fa-search"></i>
+                <a href=""><i class="fa fa-list-ul"></i></a>
+                <span data-ng-bind="tasks.length"></span> items
             </div>
             <div class="vfilters">
                 <div class="vlabel" style="float: left;">Sort by</div>
@@ -106,6 +67,10 @@
                 <a href="http://bootstrapbay.com/html/portfolio?sort=date&amp;order=asc" id="sort"
                    class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title=""
                    data-original-title="Sort ascending"><i class="fa fa-arrow-down fa-lg"></i></a>
+                <a href class="btn btn-default" data-ng-click="list = !list">
+                    <i class="fa fa-list-ul" data-ng-show="list"></i>
+                    <i class="fa fa-list-ol" data-ng-show="!list"></i>
+                </a>
             </div>
         </div>
 
@@ -194,15 +159,41 @@
                 color: #888;
             }
         </style>
-        <table class="table listings">
+
+        <div data-ng-show="!list">
+            <div class="col-sm-6 col-md-3 col-task" ng-repeat="task in tasks">
+                <div class="thumbnail">
+                    <p class="top">
+                        <a href ui-sref="tasks.detail({id: task.id})"><span class="label label-info">Action</span></a>
+                        <a href ui-sref="tasks.edit({id: task.id})"><span class="label label-warning">Edit</span></a>
+                        <a href ng-click="delete(task)"><span class="label label-danger">Delete</span></a>
+                    </p>
+                    <hr/>
+                    <div class="caption">
+                        <h3 data-ng-bind="task.name"></h3>
+                        <!--<span class="badge">42</span>-->
+                        <p data-ng-bind="task.description"></p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 col-task">
+                <div class="thumbnail" style="text-align: center">
+                    <a href ui-sref="tasks.create" style="font-size: 96px; text-decoration: none">
+                        <span>+</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <table class="table listings" data-ng-show="list">
             <tbody>
-            <tr>
+            <tr data-ng-repeat="task in tasks">
                 <td>
                     <div class="item clearfix">
                         <div class="imgWrap">
-                            <a href="/theme/dejavu-one-page-responsive-BCAE2F3"><img
-                                    src="http://bootstrapbay.com/thumbs/themes/BCAE2F3.jpg"
-                                    alt="DejaVu - One Page Responsive"></a>
+                            <a href><img src="assets/images/network_science.jpg"
+                                         alt="{{task.name}}"></a>
 
                             <div class="actions" style="display: none;">
                                 <a class="btn btn-primary" href="/theme/dejavu-one-page-responsive-BCAE2F3">View
@@ -213,11 +204,10 @@
                         </div>
                         <div class="details">
                             <div class="title">
-                                <a class="themeURL" href="/theme/dejavu-one-page-responsive-BCAE2F3">DejaVu -
-                                    One Page Responsive</a>
+                                <a class="themeURL" href data-ng-bind="task.name"></a>
 
                                 <div class="author">
-                                    <a href="/user/EliteFingers">EliteFingers</a>
+                                    <a href>Admin</a>
                                 </div>
                             </div>
 
@@ -228,7 +218,7 @@
                                     <td><a href="/themes/portfolio">Portfolio Templates</a></td>
                                 </tr>
                                 <tr>
-                                    <td class="slabel">Bootstrap:</td>
+                                    <td class="slabel">Time:</td>
                                     <td>3.3.0</td>
                                 </tr>
                                 <tr>
@@ -243,8 +233,8 @@
                             </table>
                         </div>
                         <div class="ps">
-                            <div class="price">$12</div>
-                            <div class="sales">0 sales</div>
+                            <div class="price"><span class="fa fa-tasks" style="font-size: 23px"></span> 12</div>
+                            <div class="sales">0 action</div>
                         </div>
                     </div>
                 </td>
