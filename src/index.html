@@ -52,7 +52,7 @@
                     <!--<p ui-view="hint" class="navbar-text pull-right"></p>-->
                 </li>
                 <li><a href="/" data-ng-bind="currentUser"></a></li>
-                <li><a href="/">Login</a></li>
+                <li><a href data-ng-click="logout()">Logout</a></li>
             </ul>
         </nav>
     </div>
@@ -65,8 +65,8 @@
 <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="../bower_components/angular-cookies/angular-cookies.min.js"></script>
 <script src="../bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <script src="../bower_components/angular-ui-codemirror/ui-codemirror.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js"></script>
 <!--CodeMirror-->
 <script src="../bower_components/codemirror/lib/codemirror.js"></script>
 <script src="../bower_components/codemirror/mode/javascript/javascript.js"></script>

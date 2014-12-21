@@ -8,7 +8,7 @@
   Security.$inject = ['$http', '$cookieStore', '$q'];
 
   /* @ngInject */
-  function Security($http, $cookieStore, $q) {
+  function Security($http, $cookieStore) {
     var service = {
       currentUser: {},
       isAuthenticated: isAuthenticated,
@@ -26,11 +26,11 @@
 
     // Is the current user authenticated?
     function isAuthenticated(){
-//      return !!service.currentUser;
+      return $cookieStore.get('username') ? true : false;
     }
 
     function requestCurrentUser(callback) {
-      $http.get('/api/auth/current-user').success(function(data, status, headers, config) {
+      $http.get('/api/auth/current-user').success(function (data) {
         service.currentUser = data;
         callback(service.currentUser);
       });
@@ -38,14 +38,15 @@
     }
 
     function isAdmin(){
-      return !!(true);
+      return service.isAuthenticated() && service.currentUser ? true : false;
     }
 
     // Get the first reason for needing a login
     function getLoginReason() {
-//      if (!$cookieStore.get('username')) {
-//        service.logout();
-//      }
+      console.log(service.isAdmin());
+      if (!service.isAuthenticated()) {
+        service.redirect('login.html');
+      }
     }
 
     // Attempt to authenticate a user by the given username
@@ -58,7 +59,10 @@
 
       $http.post('/api/auth/login', {username: username, password: password, remember: true})
         .success(function(data) {
-          if(data == 'true') redirect();
+          if (data == 'true') {
+            $cookieStore.put('username', username);
+            redirect();
+          }
           else callback(alert);
       });
 
@@ -72,6 +76,7 @@
 
     // Logout the current user and redirect
     function logout() {
+      $cookieStore.remove('username');
       service.redirect('login.html');
 //      $http.get('api/auth/logout').then(function (data) {
 //        service.currentUser = null;

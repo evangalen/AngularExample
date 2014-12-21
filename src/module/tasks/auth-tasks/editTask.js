@@ -31,13 +31,8 @@
         this: this
       });
 
-      $scope.model = {
-        name: taskData.name,
-        description: taskData.description,
-        input: taskData.input,
-        behaviour: taskData.behaviour,
-        output: taskData.output
-      };
+      $scope.model = taskData;
+
     }
 
   }

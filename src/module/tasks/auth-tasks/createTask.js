@@ -27,9 +27,9 @@
     }
 
     $scope.postData = function(data){
-      TaskResources.save({}, data, function(data){
+      TaskResources.save({}, data, function () {
         $state.go('tasks');
       });
-    }
+    };
   }
 })();

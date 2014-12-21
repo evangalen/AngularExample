@@ -21,10 +21,10 @@
     })
   }
 
-  LoginCtrl.$inject = ['$scope', 'Security'];
+  LoginCtrl.$inject = ['$scope', 'Security', '$cookieStore'];
 
   /* @ngInject */
-  function LoginCtrl($scope, Security) {
+  function LoginCtrl($scope, Security, $cookieStore) {
     /* jshint validthis: true */
     var vm = this;
 
@@ -47,7 +47,21 @@
               $scope.alert = data;
             });
           }
+      };
+
+//      $cookieStore.put('myFavorite','oatmeal');
+//      // Get cookie
+//      var favoriteCookie = $cookieStore.get('myFavorite');
+//      console.log(favoriteCookie);
+//      // Removing a cookie
+//      $cookieStore.remove('myFavorite');
+
+      var currentUser = $cookieStore.get('username');
+      if (currentUser) {
+        Security.redirect('index.html');
       }
+//      ;$cookieStore.put('username', btoa($scope.username))
+//      console.log($cookieStorage.get('username'));
     }
   }
 })();

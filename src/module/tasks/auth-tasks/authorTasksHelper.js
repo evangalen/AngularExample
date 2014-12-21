@@ -9,7 +9,7 @@
 
   /* @ngInject */
   function AuthorTasksHelper() {
-    return function ($scope, PageService) {
+    return function ($scope) {
 
       var mirrorOptions = function(title, mode){
         var option = {
@@ -28,6 +28,13 @@
       $scope.inputOption = mirrorOptions('Input', 'text/html');
       $scope.jsOption = mirrorOptions('Behaviour', 'javascript');
       $scope.outputOption = mirrorOptions('Output', 'text/html');
+      $scope.model = {
+        name: '',
+        description: '',
+        input: '',
+        behaviour: '',
+        output: ''
+      };
 
       $scope.selectedTab = function() {
         $scope.inputOption.cmInstance.refresh();
@@ -43,7 +50,7 @@
 
       $scope.launch = function(){
         $scope.dynamicOutput = $scope.model.output;
-      }
+      };
     }
   }
 
