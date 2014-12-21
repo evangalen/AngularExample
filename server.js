@@ -11,25 +11,25 @@ var tasks = [
     id: 0,
     name: 'Ne',
     description: 'Unclock',
-    input: '%3Cform%20class=%22navbar-form%20navbar-left%22%20role=%22search%22%3E%0A%20%20%3Cdiv%20class=%22form-group%22%3E%0A%20%20%20%20%3Cinput%20type=%22text%22%20class=%22form-control%22%20placeholder=%22Search%22%3E%0A%20%20%3C/div%3E%0A%20%20%3Cbutton%20type=%22submit%22%20class=%22btn%20btn-default%22%3ESubmit%3C/button%3E%0A%3C/form%3E',
-    behaviour: 'var%20parse%20=%20this.parseInt;%0Avar%20a%20=%20parse(params.a,%2010);%0Avar%20b%20=%20parse(params.b,%2010);%0Acallback.call(context,%20a%20+%20b);',
-    output: '%3Cdiv%20class=%22row%22%20ng-show=%22resultDone%22%3E%0A%20%20%20%20%3Ch3%3EResult%20is%20%7B%7Bresult.value%7D%7D%3C/h3%3E%0A%3C/div%3E'
+    input: '<div>\n <div class="form-group">\n <label for="a">a</label>\n <input id="a" ng-model="a" class="form-control">\n </div>\n <div class="form-group">\n <label for="b">b</label>\n <input id="b" ng-model="b" class="form-control">\n </div>\n </div>',
+    behaviour: 'var parse = this.parseInt;\n var a = parse(params.a, 10);\n var b = parse(params.b, 10);\n callback.call(context, a + b);',
+    output: '<div>\n <h3>Result is {{a}}</h3> /n</div>'
   },
   {
     id: 1,
     name: 'Unclock',
     description: 'Unclock',
-    input: '%3Cdiv%20class=%22row%22%3E%0A%20%20%20%20%3Cdiv%20class=%22form-group%22%3E%0A%20%20%20%20%20%20%20%20%3Clabel%20for=%22a%22%3Ea%3C/label%3E%0A%20%20%20%20%20%20%20%20%3Cinput%20id=%22a%22%20ng-model=%22a%22%20class=%22form-control%22%3E%0A%20%20%20%20%3C/div%3E%0A%20%20%20%20%3Cdiv%20class=%22form-group%22%3E%0A%20%20%20%20%20%20%20%20%3Clabel%20for=%22b%22%3Eb%3C/label%3E%0A%20%20%20%20%20%20%20%20%3Cinput%20id=%22b%22%20ng-model=%22b%22%20class=%22form-control%22%3E%0A%20%20%20%20%3C/div%3E%0A%3C/div%3E',
-    behaviour: 'var%20parse%20=%20this.parseInt;%0Avar%20a%20=%20parse(params.a,%2010);%0Avar%20b%20=%20parse(params.b,%2010);%0Acallback.call(context,%20a%20+%20b);',
-    output: '%3Cdiv%20class=%22row%22%20ng-show=%22resultDone%22%3E%0A%20%20%20%20%3Ch3%3EResult%20is%20%7B%7Bresult.value%7D%7D%3C/h3%3E%0A%3C/div%3E'
+    input: '<div>\n <div class="form-group">\n <label for="a">a</label>\n <input id="a" ng-model="a" class="form-control">\n </div>\n <div class="form-group">\n <label for="b">b</label>\n <input id="b" ng-model="b" class="form-control">\n </div>\n </div>',
+    behaviour: 'var parse = this.parseInt;\n var a = parse(params.a, 10);\n var b = parse(params.b, 10);\n callback.call(context, a + b);',
+    output: '<div>\n <h3>Result is {{a}}</h3> /n</div>'
   },
   {
     id: 2,
     name: 'Clock',
     description: 'Unclock',
-    input: '%3Cdiv%20class=%22row%22%3E%0A%20%20%20%20%3Cdiv%20class=%22form-group%22%3E%0A%20%20%20%20%20%20%20%20%3Clabel%20for=%22a%22%3Ea%3C/label%3E%0A%20%20%20%20%20%20%20%20%3Cinput%20id=%22a%22%20ng-model=%22a%22%20class=%22form-control%22%3E%0A%20%20%20%20%3C/div%3E%0A%20%20%20%20%3Cdiv%20class=%22form-group%22%3E%0A%20%20%20%20%20%20%20%20%3Clabel%20for=%22b%22%3Eb%3C/label%3E%0A%20%20%20%20%20%20%20%20%3Cinput%20id=%22b%22%20ng-model=%22b%22%20class=%22form-control%22%3E%0A%20%20%20%20%3C/div%3E%0A%3C/div%3E',
-    behaviour: 'var%20parse%20=%20this.parseInt;%0Avar%20a%20=%20parse(params.a,%2010);%0Avar%20b%20=%20parse(params.b,%2010);%0Acallback.call(context,%20a%20+%20b);',
-    output: '%3Cdiv%20class=%22row%22%20ng-show=%22resultDone%22%3E%0A%20%20%20%20%3Ch3%3EResult%20is%20%7B%7Bresult.value%7D%7D%3C/h3%3E%0A%3C/div%3E'
+    input: '<div>\n <div class="form-group">\n <label for="a">a</label>\n <input id="a" ng-model="a" class="form-control">\n </div>\n <div class="form-group">\n <label for="b">b</label>\n <input id="b" ng-model="b" class="form-control">\n </div>\n </div>',
+    behaviour: 'var parse = this.parseInt;\n var a = parse(params.a, 10);\n var b = parse(params.b, 10);\n callback.call(context, a + b);',
+    output: '<div>\n <h3>Result is {{a}}</h3> \n</div>'
   }
 ];
 
@@ -132,7 +132,7 @@ app.post('/api/auth/login', function (req, res) {
 
 //    if (req.body.remember) res.cookie('remember', users[i].id, { maxAge: minute });
 //    res.clearCookie('name', { path: '/admin' });
-  res.cookie('username', req.body.username);
+//  res.cookie('username', '#'+req.body.username+'#');
   res.send(result);
 
 });
