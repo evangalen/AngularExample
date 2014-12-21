@@ -34,11 +34,10 @@
       $scope.model = {
         name: taskData.name,
         description: taskData.description,
-        input: decodeURI(taskData.input),
-        behaviour: decodeURI(taskData.behaviour),
-        output: decodeURI(taskData.output)
+        input: taskData.input,
+        behaviour: taskData.behaviour,
+        output: taskData.output
       };
-
     }
 
   }

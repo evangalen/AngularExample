@@ -36,8 +36,12 @@
       };
 
       $scope.tryIt = function(){
+        $scope.titleOut ='Title';
         $scope.review = true;
         $scope.dynamicInput = $scope.model.input;
+      };
+
+      $scope.launch = function(){
         $scope.dynamicOutput = $scope.model.output;
       }
     }

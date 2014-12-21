@@ -49,18 +49,27 @@
                 <span class="badge">Output</span>
                 <textarea ui-codemirror="outputOption.opts" ng-model="model.output"></textarea>
             </div>
-            <div class="col-md-6 col-code">
+            <div class="col-md-6 col-code" style="height: 300px; border: 1px solid #eee;overflow: auto; padding: 5px">
                 <span class="badge">Review</span>
                 <div data-ng-show="review">
+                    <div>
+                        <h2 data-ng-bind="model.name"></h2>
+                        <p data-ng-bind="model.description"></p>
+                        <hr/>
+                    </div>
                     <div dynamic-templates="dynamicInput"></div>
+                    <div class="pull-right">
+                        <button class="btn btn-primary" ng-click="launch()">Launch</button>
+                    </div>
                     <div dynamic-templates="dynamicOutput"></div>
                 </div>
             </div>
             <div class="col-sm-offset-10 col-sm-2">
+                <br/>
                 <button type="submit"  class="btn btn-primary" ng-click="postData(model)">Save</button>
                 <button class="btn btn-danger" ng-click="postData()">Cancel</button>
+                <br/>
             </div>
-
         </tab>
     </tabset>
 

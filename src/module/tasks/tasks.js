@@ -62,7 +62,6 @@
     /* jshint validthis: true */
     var vm = this;
     vm.activate = activate;
-    vm.codeMirror = codeMirror;
     vm.title = 'Browse Tasks';
 
     activate();
@@ -72,16 +71,11 @@
     function activate() {
       PageService.setTitle(vm.title);
       loadTasks();
-    }
 
-    function codeMirror(mode){
-      return {
-        lineNumbers: true,
-        indentWithTabs: true,
-        lineWrapping : true,
-        mode: mode,
-        extraKeys: {'Ctrl-Space': 'autocomplete'}
-      }
+      $scope.delete = function(task){
+        deleteTask(task.id);
+        loadTasks();
+      };
     }
 
     function loadTasks(){
@@ -95,11 +89,6 @@
         console.log(data);
       });
     }
-
-    $scope.delete = function(task){
-      deleteTask(task.id);
-      loadTasks();
-    };
 
   }
 })();
