@@ -1,14 +1,21 @@
-<div class="bs-docs-header bs-docs-header-modules" id="content">
+<style>
+    .mainHeader h1 {
+        font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        margin: 0;
+        font-size: 34px;
+        font-weight: 300;
+    }
+</style>
+<div class="mainHeader">
     <div class="container">
-        <h1>Browser Tasks</h1>
-        <!--<p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body > .container</code>.</p>-->
-        <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
+        <div class="row">
+            <div class="col-xs-12 clearfix">
+                <h1>Browser Tasks</h1>
+            </div>
+        </div>
     </div>
 </div>
 <div class="container">
-    <!--<div class="page-header">-->
-        <!--<h1>Browser Task</h1>-->
-    <!--</div>-->
     <div class="row">
         <div class="col-sm-6 col-md-3 col-task" ng-repeat="task in tasks">
             <div class="thumbnail">
@@ -32,6 +39,228 @@
                     <span>+</span>
                 </a>
             </div>
+        </div>
+
+
+        <div id="catListings" class="mainWrap clearfix">
+        <div class="col-xs-12">
+        <style>
+            #catListings .sorting {
+                border-bottom: 4px solid #e5e5e5;
+                margin-bottom: 30px;
+                padding-bottom: 15px;
+            }
+
+            #catListings .sorting .totalItems {
+                float: left;
+                line-height: 34px;
+            }
+
+            #catListings .sorting .totalItems i {
+                color: #888888;
+                margin-right: 5px;
+            }
+
+            #catListings .sorting .vfilters {
+                float: right;
+            }
+
+            #catListings .sorting .vlabel {
+                line-height: 34px;
+                margin-right: 15px;
+            }
+
+            #catListings .sorting select {
+                float: left;
+                width: 100px;
+                padding: 6px;
+                margin-right: 5px;
+            }
+
+            .form-control {
+                border-radius: 0px;
+            }
+
+            #catListings .sorting .btn {
+                border: 1px solid #cccccc;
+                box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+                color: #555555;
+                font-size: 12px;
+                padding: 7px 14px;
+                background: white;
+            }
+        </style>
+        <div class="sorting clearfix">
+            <div class="totalItems">
+                <i class="fa fa-search"></i>41 items
+            </div>
+            <div class="vfilters">
+                <div class="vlabel" style="float: left;">Sort by</div>
+                <select id="orderBy" class="form-control" autocomplete="off">
+                    <option value="date" selected="">Date</option>
+                    <option value="trending">Trending</option>
+                    <option value="sales">Sales</option>
+                    <option value="price">Price</option>
+                    <option value="author">Author</option>
+                </select>
+                <a href="http://bootstrapbay.com/html/portfolio?sort=date&amp;order=asc" id="sort"
+                   class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title=""
+                   data-original-title="Sort ascending"><i class="fa fa-arrow-down fa-lg"></i></a>
+            </div>
+        </div>
+
+        <style>
+            #catListings .item {
+                border-bottom: 4px solid #E5E5E5;
+                margin-bottom: 30px;
+                padding-bottom: 30px;
+            }
+
+            #catListings .item .imgWrap {
+                float: left;
+                margin-right: 20px;
+                width: 320px;
+                position: relative;
+                border: 1px solid #DDDDDD;
+            }
+
+            #catListings .item .imgWrap img {
+                background: url(http://bootstrapbay.com/assets/img/60.png);
+                display: block;
+                height: auto;
+                max-width: 100%;
+            }
+
+            #catListings .item .imgWrap .actions {
+                background: url(http://bootstrapbay.com/assets/img/60.png);
+                padding: 59px 0;
+                position: absolute;
+                text-align: center;
+                top: 0;
+                width: 318px;
+            }
+
+            #catListings .item .imgWrap .actions .btn {
+                margin: 0 5px;
+            }
+
+            #catListings .item .details {
+                float: left;
+                margin-right: 15px;
+                width: 565px;
+            }
+
+            #catListings .item .details .title {
+                min-height: 80px;
+                margin-bottom: 15px;
+            }
+
+            #catListings .item .details .title .themeURL {
+                font-size: 26px;
+                font-weight: 300;
+                line-height: 1.2;
+                font-family: 'Roboto';
+            }
+
+            #catListings .item .details .title a.themeURL {
+                color: #333;
+            }
+
+            #catListings .item .details .title .themeURL {
+                font-size: 26px;
+                font-weight: 300;
+                line-height: 1.2;
+                font-family: 'Roboto';
+            }
+
+            #catListings .item .details .slabel {
+                font-weight: 700;
+                padding-right: 20px;
+            }
+
+            #catListings .item .ps {
+                float: left;
+                text-align: center;
+                width: 120px;
+            }
+
+            #catListings .item .ps .price {
+                font-size: 32px;
+                line-height: 1;
+                margin-bottom: 5px;
+            }
+
+            #catListings .item .ps .sales {
+                color: #888;
+            }
+        </style>
+        <table class="table listings">
+            <tbody>
+            <tr>
+                <td>
+                    <div class="item clearfix">
+                        <div class="imgWrap">
+                            <a href="/theme/dejavu-one-page-responsive-BCAE2F3"><img
+                                    src="http://bootstrapbay.com/thumbs/themes/BCAE2F3.jpg"
+                                    alt="DejaVu - One Page Responsive"></a>
+
+                            <div class="actions" style="display: none;">
+                                <a class="btn btn-primary" href="/theme/dejavu-one-page-responsive-BCAE2F3">View
+                                    details</a>
+                                <a class="btn btn-warning" href="/preview/dejavu-one-page-responsive-BCAE2F3"
+                                   target="_blank">Live demo</a>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <div class="title">
+                                <a class="themeURL" href="/theme/dejavu-one-page-responsive-BCAE2F3">DejaVu -
+                                    One Page Responsive</a>
+
+                                <div class="author">
+                                    <a href="/user/EliteFingers">EliteFingers</a>
+                                </div>
+                            </div>
+
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td class="slabel">Category:</td>
+                                    <td><a href="/themes/portfolio">Portfolio Templates</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="slabel">Bootstrap:</td>
+                                    <td>3.3.0</td>
+                                </tr>
+                                <tr>
+                                    <td class="slabel">Tags:</td>
+                                    <td><a href="/search?q=creative">creative</a>, <a
+                                            href="/search?q=bussines">bussines</a>,
+                                        <a href="/search?q=one page">one page</a>, <a
+                                                href="/search?q=flat design">flat design</a>, <a
+                                                href="/search?q=modern">modern</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="ps">
+                            <div class="price">$12</div>
+                            <div class="sales">0 sales</div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            <ul class="clearfix pagination">
+                <li class="copy previous disabled"><a href="#"><i class="fa fa-caret-left"></i></a></li>
+                <li class="number active"><a data-pagenumber="1" href="#">1</a></li>
+                <li class="number"><a data-pagenumber="2" href="?page=2">2</a></li>
+                <li class="copy next"><a href="?page=2"><i class="fa fa-caret-right"></i></a></li>
+            </ul>
+        </div>
+        </div>
         </div>
     </div>
     <div ui-view></div>

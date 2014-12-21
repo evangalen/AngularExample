@@ -9,7 +9,7 @@
   Config.$inject = ['$stateProvider'];
 
   /* @ngInject */
-  function Config($stateProvider){
+  function Config($stateProvider) {
     $stateProvider.state('login', {
       url: '/login',
       views: {
@@ -30,6 +30,7 @@
 
     vm.activate = activate;
     vm.title = 'login';
+    var currentUser = $cookieStore.get('username');
 
     activate();
 
@@ -37,31 +38,21 @@
 
     function activate() {
 
-      $scope.closeAlert = function() {
+      $scope.closeAlert = function () {
         $scope.alert.done = !$scope.alert.done;
       };
 
-      $scope.submit = function(){
-          if ($scope.username && $scope.password) {
-            Security.login($scope.username, $scope.password, function(data){
-              $scope.alert = data;
-            });
-          }
+      $scope.submit = function () {
+        if ($scope.username && $scope.password) {
+          Security.login($scope.username, $scope.password, function (data) {
+            $scope.alert = data;
+          });
+        }
       };
 
-//      $cookieStore.put('myFavorite','oatmeal');
-//      // Get cookie
-//      var favoriteCookie = $cookieStore.get('myFavorite');
-//      console.log(favoriteCookie);
-//      // Removing a cookie
-//      $cookieStore.remove('myFavorite');
-
-      var currentUser = $cookieStore.get('username');
       if (currentUser) {
         Security.redirect('index.html');
       }
-//      ;$cookieStore.put('username', btoa($scope.username))
-//      console.log($cookieStorage.get('username'));
     }
   }
 })();

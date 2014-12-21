@@ -7,6 +7,7 @@
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="assets/css/docs.min.css"/>
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="../bower_components/codemirror/lib/codemirror.css"/>
@@ -16,6 +17,7 @@
 
 </head>
 <body>
+
 <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
     <div class="container">
         <div class="navbar-header">
@@ -25,7 +27,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href ui-sref="dashboard" class="navbar-brand">Taskcenter</a>
+            <a href ui-sref="dashboard" class="navbar-brand">AngularJS</a>
         </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
@@ -47,11 +49,18 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li data-ng-show="adminMode"><a href><span class="glyphicon glyphicon-user"></span> <span data-ng-bind="userMode"></span></a></li>
-                <li ng-class="{active: $state.includes('contacts')}">
-                    <a ui-sref="contacts.list">Contacts</a>
-                    <!--<p ui-view="hint" class="navbar-text pull-right"></p>-->
+                <li id="fat-menu" class="dropdown">
+                    <a id="userMenu" class="dropdown-toggle clearfix" data-toggle="dropdown" role="button"
+                       href="#"><span data-ng-bind="currentUser"></span> <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu" aria-labelledby="drop2" role="menu">
+                        <li role="presentation"><a href="/themes" tabindex="-1" role="menuitem">All Categories</a></li>
+                        <li class="divider" role="presentation"></li>
+                        <li role="presentation"><a href="/themes/business-corporate" tabindex="-1" role="menuitem">Access
+                            to admin mode</a></li>
+                        <li role="presentation"><a href="/themes/wordpress" tabindex="-1" role="menuitem">Logout</a>
+                        </li>
+                    </ul>
                 </li>
-                <li><a href="/" data-ng-bind="currentUser"></a></li>
                 <li><a href data-ng-click="logout()">Logout</a></li>
             </ul>
         </nav>
@@ -59,6 +68,8 @@
 </header>
 <!-- Begin page content -->
 <div ui-view></div>
+
+<footer data-ng-include="'module/layout/footer/footer.html'"></footer>
 
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../bower_components/angular/angular.js"></script>

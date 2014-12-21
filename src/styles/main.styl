@@ -1,85 +1,124 @@
 @import '../module/tasks/tasks.styl'
-a {
-  text-decoration: none
+a
+  text-decoration none
+
+.mainHeader
+  padding: 34px 0;
+  background: url("../assets/images/color29.jpg") no-repeat fixed center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #fff;
+  margin-bottom: 30px;
+
+.homeHeader
+  text-align: center;
+  padding: 50px 0;
+
+.mainHeader h1.pageTitle {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 40px;
 }
-.btn{
-  border-radius: 0px !important;
+
+#home .hotItems .imgWrap {
+  background: #f5f5f5;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 30px;
+  padding: 3px;
+  transition: all 0.25s ease 0s;
 }
-.tab-content{
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  /*padding: 20px 0 0 20px;*/
+
+#home .hotItems .imgWrap img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  border: 1px solid #dddddd;
+}
+
+#home .hotItems .itemInfo {
+  font-size: 14px;
+  padding: 8px 4px;
+}
+
+#home .hotItems .itemInfo a {
+  font-size: 14px;
+  padding: 8px 4px;
+}
+
+#home .hotItems .itemInfo .title {
   float: left;
-  width: 100%;
+  width: 200px;
 }
 
-
-.CodeMirror {
-  border: 1px solid #eee;
-  height: 300px;
+#home .hotItems .itemInfo .price {
+  float: right;
+  font-weight: 700;
 }
 
-.carbonad {
-  width: 330px!important;
-  margin: 15px auto!important;
-  border-width: 1px!important;
-  border-radius: 4px;
-  border: none !important;
-  background: transparent!important;
-}
+.btn
+  border-radius 0px !important
 
-.col-code {
-  position: relative;
-  margin-bottom: 20px;
-}
-.col-task .thumbnail{
-  height: 125px;
-}
-.col-code{
+.tab-content
+  border-left 1px solid #ddd
+  border-right 1px solid #ddd
+  border-bottom 1px solid #ddd
+  float left
+  width 100%
+
+.CodeMirror
+  border 1px solid #eee
+  height 300px
+
+.carbonad
+  width 330px !important
+  margin 15px auto !important
+  border-width 1px !important
+  border-radius 4px
+  border none !important
+  background transparent !important
+
+.col-task .thumbnail
+  height 125px
+
+.col-code
+  position relative
+  margin-bottom 20px
   padding 0
   margin 0
-}
-.col-code .badge {
-  position: absolute;
-  z-index: 1;
-  right: 20px;
-  top: 5px;
-  background-color: #ddd;
-  border-radius: 2px;
-}
+  .badge
+    position absolute
+    z-index 1
+    right 20px
+    top 5px
+    background-color #ddd
+    border-radius 2px
 
-.thumbnail .top {
-  float: right;
-  margin: 0 0 0px;
-}
+.thumbnail
+  .top
+    float right
+    margin 0 0 0px
+    a
+      text-decoration none
+  .caption
+    text-align center
+    padding 0px
+    color #333
+  hr
+    margin-top 25px
 
-.thumbnail .top a{
-  text-decoration: none
-}
+.footer
+  bottom 0
+  width 100%
+  height 60px
+  background-color #f5f5f5
 
-.thumbnail .caption {
-  text-align: center;
-  padding: 0px;
-  color: #333;
-}
+.footer > .container
+  padding-right 15px
+  padding-left 15px
 
-.thumbnail hr {
-  margin-top: 25px;
-}
-
-.footer {
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  background-color: #f5f5f5;
-}
-
-.footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-.container .text-muted {
-  margin: 20px 0;
-}
+.container .text-muted
+  margin 20px 0
