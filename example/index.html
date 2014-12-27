@@ -40,6 +40,7 @@
     </script>
 </head>
 <body data-ng-controller="ExampleCtrl">
+
 <div id="mainContainer">
     <div id="leftContainer">
         <ul class="nav nav-sidebar">
@@ -53,8 +54,8 @@
         <iframe data-ng-src="{{src}}" frameborder="0"></iframe>
     </div>
 </div>
-<script src="../bower_components/jquery/dist/jquery.min.js"></script>
-<script src="../bower_components/angular/angular.min.js"></script>
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
 <script src="../bower_components/jquery.splitter/js/jquery.splitter-0.14.0.js"></script>
 
 <script>
@@ -66,24 +67,29 @@
                         $('#mainContainer').split({orientation: 'vertical', limit: 100, position: '20%'});
                     });
 
+                    function getUrl(url) {
+                        var result = document.URL + url;
+                        return result;
+                    }
+
                     $scope.tabs = [
                         {
                             title: 'ui-codemirror',
-                            'src': 'http://localhost:8080/example/ui-codemirror/index.html',
+                            'src': getUrl('/ui-codemirror/index.html'),
                             'homepage': 'https://github.com/mamacdon/orion-codemirror'
                         },
                         {
                             title: 'jquery-splitter',
-                            'src': 'http://localhost:8080/example/jquery-splitter/index.html',
+                            'src': getUrl('jquery-splitter/index.html'),
                             'homepage': ''
                         },
                         {
                             title: 'dynamic-template',
-                            'src': 'http://localhost:8080/example/dynamic-template/index.html',
+                            'src': getUrl('/dynamic-template/index.html'),
                             'homepage': ''
                         }
                     ];
-                    $scope.src = $scope.tabs[$scope.tabs.length - 2].src;
+                    $scope.src = $scope.tabs[$scope.tabs.length - 1].src;
 
                     $scope.changeTab = function (tab) {
                         $scope.src = tab;
