@@ -6,13 +6,13 @@
     .config(Config)
     .controller('TasksCtrl', TasksCtrl);
 
-  Config.$inject = ['$stateProvider', '$urlRouterProvider'];
+  Config.$inject = ['$stateProvider'];
   /* @ngInject */
-  function Config($stateProvider){
+  function Config($stateProvider) {
 
     $stateProvider.state('tasks', {
       url: '/tasks',
-      views:{
+      views: {
         '@': {
           templateUrl: 'module/tasks/tasks.html',
           controller: 'TasksCtrl'
@@ -20,7 +20,7 @@
       }
     }).state('tasks.detail', {
       url: '/:id',
-      views:{
+      views: {
         '@': {
           templateUrl: 'module/tasks/details/details.html',
           controller: 'DetailsCtrl',
@@ -33,15 +33,15 @@
       }
     }).state('tasks.create', {
       url: '/create',
-      views:{
+      views: {
         '@': {
-          templateUrl: 'module/tasks/auth-tasks/authTasks.html',
+          templateUrl: 'module/tasks/auth-tasks/auth-tasks.html',
           controller: 'CreateTasksCtrl'
         }
       }
     }).state('tasks.edit', {
       url: '/edit/:id',
-      views:{
+      views: {
         '@': {
           templateUrl: 'module/tasks/auth-tasks/authTasks.html',
           controller: 'EditTaskCtrl',
@@ -73,20 +73,20 @@
       PageService.setTitle(vm.title);
       loadTasks();
 
-      $scope.delete = function(task){
+      $scope.delete = function (task) {
         deleteTask(task.id);
         loadTasks();
       };
     }
 
-    function loadTasks(){
-      TaskResources.query(function(data){
+    function loadTasks() {
+      TaskResources.query(function (data) {
         $scope.tasks = data;
       });
     }
 
-    function deleteTask(taskId){
-      TaskResources.delete({id: taskId}, function(data){
+    function deleteTask(taskId) {
+      TaskResources.delete({id: taskId}, function (data) {
         console.log(data);
       });
     }

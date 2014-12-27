@@ -5,15 +5,16 @@
     <title data-ng-bind="PageService.getTitle()"></title>
     <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
-
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="assets/css/docs.min.css"/>
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="../bower_components/codemirror/lib/codemirror.css"/>
     <link rel="stylesheet" href="../bower_components/codemirror/addon/hint/show-hint.css"/>
-
     <link rel="stylesheet" href="styles/main.css"/>
+
+    <!--<link href="assets/css/jquery.splitter.css" rel="stylesheet"/>-->
 
 </head>
 <body>
@@ -38,13 +39,10 @@
                     <a href ui-sref="tasks">Tasks</a>
                 </li>
                 <li ui-sref-active="active">
-                    <a href ui-sref="components">Components</a>
-                </li>
-                <li ui-sref-active="active">
                     <a href ui-sref="resources">Resources</a>
                 </li>
                 <li ui-sref-active="active">
-                    <a href ui-sref="customize">Customize</a>
+                    <a href ui-sref="history">History</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -53,11 +51,11 @@
                     <a id="userMenu" class="dropdown-toggle clearfix" data-toggle="dropdown" role="button"
                        href="#"><span data-ng-bind="currentUser"></span> <i class="fa fa-caret-down"></i></a>
                     <ul class="dropdown-menu" aria-labelledby="drop2" role="menu">
-                        <li role="presentation"><a href="/themes" tabindex="-1" role="menuitem">All Categories</a></li>
+                        <li role="presentation"><a href tabindex="-1" role="menuitem">All Categories</a></li>
                         <li class="divider" role="presentation"></li>
-                        <li role="presentation"><a href="/themes/business-corporate" tabindex="-1" role="menuitem">Access
+                        <li role="presentation"><a href tabindex="-1" role="menuitem">Access
                             to admin mode</a></li>
-                        <li role="presentation"><a href="/themes/wordpress" tabindex="-1" role="menuitem">Logout</a>
+                        <li role="presentation"><a href tabindex="-1" role="menuitem">Logout</a>
                         </li>
                     </ul>
                 </li>
@@ -90,6 +88,7 @@
 <script src="../bower_components/codemirror/addon/hint/html-hint.js"></script>
 <script src="../bower_components/codemirror/addon/hint/xml-hint.js"></script>
 
+<script src="assets/js/jquery.splitter-0.14.0.js"></script>
 <!--Resource-->
 <script src="common/resources/tasks.js"></script>
 <script src="common/resources/user.js"></script>
@@ -115,6 +114,8 @@
 <script src="module/tasks/auth-tasks/editTask.js"></script>
 <script src="module/tasks/auth-tasks/authorTasksHelper.js"></script>
 <script src="module/tasks/auth-tasks/createTask.js"></script>
+<!--history-->
+<script src="module/history/history.js"></script>
 
 </body>
 </html>

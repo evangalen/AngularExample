@@ -1,19 +1,56 @@
 <main-header title="title"></main-header>
+
+
+<script>
+    jQuery(function ($) {
+        $('#mainContainer').split({orientation: 'vertical', limit: 100, position: '50%'});
+        $('#leftContainer').split({orientation: 'horizontal', limit: 100});
+        $('#rightContainer').split({orientation: 'horizontal', limit: 100});
+    });
+</script>
+<style>
+    .tab-pane textarea {
+        border-radius: 0px !important;
+        margin-bottom: 4px !important;
+        border: 1px solid #ccc !important;
+        width: 100% !important;
+        margin: 0px !important;
+    }
+
+    .CodeMirror {
+        height: 100% !important;
+    }
+
+    .tab-pane-row {
+        background-color: #f1f1f1 !important;
+        padding: 0px 0px 0px 0px;
+        height: 610px;
+        border-top: 1px solid #ddd;
+    }
+</style>
+
+
 <div class="container" style="margin-bottom: 200px">
-<tabset>
+
+
+    <tabset>
         <tab heading="General">
             <br/>
+
             <form class="form-horizontal" role="form">
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Name</label>
+
                     <div class="col-sm-10">
                         <input type="text" data-ng-model="model.name" class="form-control" id="name" placeholder="Name">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="description" class="col-sm-2 control-label">Description</label>
+
                     <div class="col-sm-10">
-                        <input type="text" data-ng-model="model.description" class="form-control" id="description" placeholder="Description">
+                        <input type="text" data-ng-model="model.description" class="form-control" id="description"
+                               placeholder="Description">
                     </div>
                 </div>
                 <div class="form-group">
@@ -28,44 +65,83 @@
             </form>
         </tab>
         <tab heading="Behaviour" select="selectedTab()">
-            <br/>
             <div class="col-sm-offset-11 col-sm-1">
                 <button type="submit" class="btn btn-danger" ng-click="tryIt(model)">Try It</button>
             </div>
-            <div class="col-md-6 col-code">
-                <span class="badge" data-ng-bind="inputOption.title"></span>
-                <textarea ui-codemirror="inputOption.opts" ng-model="model.input"></textarea>
-            </div>
-            <div class="col-md-6 col-code">
-                <span class="badge">Javascript</span>
-                <textarea ui-codemirror="jsOption.opts" ng-model="model.behaviour"></textarea>
-            </div>
-            <div class="col-md-6 col-code">
-                <span class="badge">Output</span>
-                <textarea ui-codemirror="outputOption.opts" ng-model="model.output"></textarea>
-            </div>
-            <div class="col-md-6 col-code" style="height: 300px; border: 1px solid #eee;overflow: auto; padding: 5px">
-                <span class="badge">Review</span>
-                <div data-ng-show="review">
-                    <div>
-                        <h2 data-ng-bind="model.name"></h2>
-                        <p data-ng-bind="model.description"></p>
-                        <hr/>
+
+            <div class="row tab-pane-row" id='mainContainer' style="width: 1000px; height:500px">
+                <div class="" id='leftContainer'>
+                    <div class="row pos-relative" id="topLeft">
+                        <textarea id="inputParameters" col="50" rows="10"></textarea>
+
+                        <div class="task-label-wrapper">
+                            <label class="small-label">Input</label>
+                        </div>
                     </div>
-                    <div dynamic-templates="dynamicInput"></div>
-                    <div class="pull-right">
-                        <button class="btn btn-primary" ng-click="launch()">Launch</button>
+
+                    <div class="row pos-relative" id="bottomLeft">
+                        <textarea id="behaviour" col="50" rows="10"></textarea>
+
+                        <div class="task-label-wrapper">
+                            <label class="small-label">Behaviour</label>
+                        </div>
                     </div>
-                    <div dynamic-templates="dynamicOutput"></div>
+
                 </div>
+
+                <div class="" id="rightContainer">
+                    <div class="row pos-relative" id="topRight">
+                        <textarea col="50" rows="10" id="resultCode"></textarea>
+
+                        <div class="task-label-wrapper">
+                            <label class="small-label">Output</label>
+                        </div>
+                    </div>
+
+                    <div class="row task-result" id="bottomRight">
+                        <div class="task-label-wrapper">
+                            <label class="small-label small-label-light">Result</label>
+                        </div>
+                        <div id="output"></div>
+                    </div>
+                </div>
+
             </div>
-            <div class="col-sm-offset-10 col-sm-2">
-                <br/>
-                <!--<button type="submit"  class="btn btn-primary" ng-click="postData(model)">Create</button>-->
-                <button type="submit"  class="btn btn-primary" ng-click="postData(model)">Save</button>
-                <button class="btn btn-danger" ng-click="postData()">Cancel</button>
-                <br/>
-            </div>
+
+            <!--<div class="col-md-6 col-code">-->
+            <!--<span class="badge" data-ng-bind="inputOption.title"></span>-->
+            <!--<textarea ui-codemirror="inputOption.opts" ng-model="model.input" id="inputParameters" col="50" rows="10"></textarea>-->
+            <!--</div>-->
+            <!--<div class="col-md-6 col-code">-->
+            <!--<span class="badge">Javascript</span>-->
+            <!--<textarea ui-codemirror="jsOption.opts" ng-model="model.behaviour" id="behaviour" col="50" rows="10"></textarea>-->
+            <!--</div>-->
+            <!--<div class="col-md-6 col-code">-->
+            <!--<span class="badge">Output</span>-->
+            <!--<textarea ui-codemirror="outputOption.opts" ng-model="model.output" col="50" rows="10" id="resultCode"></textarea>-->
+            <!--</div>-->
+            <!--<div class="col-md-6 col-code" style="height: 300px; border: 1px solid #eee;overflow: auto; padding: 5px">-->
+            <!--<span class="badge">Review</span>-->
+            <!--<div data-ng-show="review">-->
+            <!--<div>-->
+            <!--<h2 data-ng-bind="model.name"></h2>-->
+            <!--<p data-ng-bind="model.description"></p>-->
+            <!--<hr/>-->
+            <!--</div>-->
+            <!--<div dynamic-templates="dynamicInput"></div>-->
+            <!--<div class="pull-right">-->
+            <!--<button class="btn btn-primary" ng-click="launch()">Launch</button>-->
+            <!--</div>-->
+            <!--<div dynamic-templates="dynamicOutput"></div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-offset-10 col-sm-2">-->
+            <!--<br/>-->
+            <!--<!--<button type="submit"  class="btn btn-primary" ng-click="postData(model)">Create</button>-->-->
+            <!--<button type="submit"  class="btn btn-primary" ng-click="postData(model)">Save</button>-->
+            <!--<button class="btn btn-danger" ng-click="postData()">Cancel</button>-->
+            <!--<br/>-->
+            <!--</div>-->
         </tab>
     </tabset>
 </div>

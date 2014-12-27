@@ -11,23 +11,17 @@
   function AuthorTasksHelper() {
     return function ($scope) {
 
-      var mirrorOptions = function(title, mode){
+      var mirrorOptions = function (title, mode) {
         var option = {
           title: title,
           opts: {
             mode: mode.toLocaleLowerCase(),
-            onLoad: function(_cm) {
-              option.cmInstance = _cm;
-            },
             lineWrapping: true,
             lineNumbers: true
           }};
         return option;
       };
 
-      $scope.inputOption = mirrorOptions('Input', 'text/html');
-      $scope.jsOption = mirrorOptions('Behaviour', 'javascript');
-      $scope.outputOption = mirrorOptions('Output', 'text/html');
       $scope.model = {
         name: '',
         description: '',
@@ -36,19 +30,22 @@
         output: ''
       };
 
-      $scope.selectedTab = function() {
-        $scope.inputOption.cmInstance.refresh();
-        $scope.jsOption.cmInstance.refresh();
-        $scope.outputOption.cmInstance.refresh();
+      $scope.selectedTab = function () {
+        $scope.inputOption = mirrorOptions('Input', 'text/html');
+        $scope.jsOption = mirrorOptions('Behaviour', 'javascript');
+        $scope.outputOption = mirrorOptions('Output', 'text/html');
+//        $('#mainContainer').split({orientation:'vertical', limit:100, position:'50%'});
+//        $('#leftContainer').split({orientation:'horizontal', limit:100});
+//        $('#rightContainer').split({orientation:'horizontal', limit:100});
       };
 
-      $scope.tryIt = function(){
-        $scope.titleOut ='Title';
+      $scope.tryIt = function () {
+        $scope.titleOut = 'Title';
         $scope.review = true;
         $scope.dynamicInput = $scope.model.input;
       };
 
-      $scope.launch = function(){
+      $scope.launch = function () {
         $scope.dynamicOutput = $scope.model.output;
       };
     }

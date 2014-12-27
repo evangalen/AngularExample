@@ -69,6 +69,7 @@
     }
 
     // Redirect to the given url
+
     function redirect(url) {
       url = url || 'index.html';
       location.href = url;

@@ -24,12 +24,13 @@
         title: taskData.name,
         description: taskData.description
       };
+      $scope.outputModel = {};
       $scope.inputModel = decodeURI(taskData.input);
       $scope.jsModel = decodeURI(taskData.behaviour);
       $scope.outputModel = decodeURI(taskData.output);
 
       $scope.launch = function () {
-        $scope.dynamicOutput = $scope.outputModel;
+        $scope.dynamicOutput = angular.copy($scope.outputModel);
       }
     }
   }

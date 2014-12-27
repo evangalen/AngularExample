@@ -6,34 +6,10 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="assets/css/docs.min.css"/>
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="module/login/login.css"/>
 </head>
 <body>
-<style>
-    label {
-        display: inline-block;
-        max-width: 100%;
-        margin-bottom: 5px;
-        font-weight: 700;
-    }
-
-    .form-control {
-        border-radius: 0px;
-    }
-
-    #loginPage .logSide .no_account {
-        border-top: 4px solid #e5e5e5;
-        font-size: 14px;
-        margin: 30px 0 100px;
-        padding-top: 15px;
-    }
-
-    #loginPage .logSide .no_account a {
-        float: right;
-    }
-</style>
 <div class="container-full" data-ng-controller="LoginCtrl">
     <div class="row">
         <div class="col-lg-12 v-center">
@@ -50,7 +26,7 @@
                                   novalidate="novalidate" data-ng-submit="submit()">
                                 <div class="form-group">
                                     <label for="inputUsername">Username or Email</label>
-                                    <input type="username" data-ng-model="username" id="inputUsername"
+                                    <input type="text" data-ng-model="username" id="inputUsername"
                                            class="form-control input-lg" placeholder="Username address" required
                                            autofocus>
                                 </div>
@@ -60,7 +36,7 @@
                                            class="form-control input-lg" placeholder="Password" required>
                                 </div>
                                 <div class="form-group clearfix">
-                                    <a class="pull-left" href="/reset-password">Forgot password?</a>
+                                    <a class="pull-left" href>Forgot password?</a>
                                     <button id="log_in" class="pull-right btn btn-success loginBtn" type="submit"
                                             data-loading-text="Log In">Log In
                                     </button>
@@ -68,13 +44,14 @@
                                 <input type="hidden" name="redirect" value="">
                                 <input type="hidden" name="token" value="d6460057c0aaeff61dbbb5bc17b595b8">
                             </form>
-                            <p class="no_account">Don't have a account yet? <a href="/sign-up">Create Account</a></p>
+                            <p class="no_account">Don't have a account yet? <a href>Create Account</a></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> <!-- /row -->
+    </div>
+    <!-- /row -->
 </div>
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../bower_components/angular/angular.js"></script>
