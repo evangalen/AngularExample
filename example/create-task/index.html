@@ -1,0 +1,241 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>jQuery Splitter Demo</title>
+    <meta name="Description" content="jQuery Splitter Demo"/>
+    <link rel="shortcut icon" href=""/>
+    <link href="../../bower_components/jquery.splitter/css/jquery.splitter.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+
+    <!-- js -->
+    <script src="../../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../../bower_components/angular/angular.min.js"></script>
+    <script src="../../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="../../bower_components/angular-ui-codemirror/ui-codemirror.min.js"></script>
+    <script src="../../bower_components/codemirror/lib/codemirror.js"></script>
+    <script src="../../bower_components/codemirror/mode/css/css.js"></script>
+    <script src="../../bower_components/codemirror/mode/javascript/javascript.js"></script>
+    <script src="../../bower_components/codemirror/mode/xml/xml.js"></script>
+
+    <script src="../../bower_components/jquery.splitter/js/jquery.splitter-0.14.0.js"></script>
+    <!--[if IE]>
+    <![endif]-->
+    <style>
+        body {
+            height: 100%;
+            width: 100% background : #fff;
+        }
+
+        .row {
+            margin: 0px !important;
+        }
+
+        .pos-relative {
+            position: relative !important;
+        }
+
+        .task-label-wrapper {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: 1px solid #ddd;
+            padding: 2px 10px;
+            text-align: center;
+            background: none repeat scroll 0 0 #fff;
+            opacity: 0.75;
+            z-index: 799;
+        }
+
+        .small-label {
+            color: #666;
+            font-size: 13px;
+            padding: 0px;
+            margin: 0px;
+            padding: 4px;
+            font-weight: bold !important;
+        }
+
+        .tab-pane textarea {
+            border-radius: 0px !important;
+            margin-bottom: 4px !important;
+            border: 1px solid #ccc !important;
+            width: 100% !important;
+            margin: 0px !important;
+        }
+
+        .tab-pane-row {
+            background-color: #f1f1f1 !important;
+            padding: 0px 0px 0px 0px;
+            height: 610px;
+            border-top: 1px solid #ddd;
+        }
+
+        textarea {
+            width: 100%;
+            height: 98%;
+        }
+
+        .main {
+            width: 100%;
+            background: #ddd;
+            border: 1px solid #002240;
+            padding: 10px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        .mainContainer {
+            width: 100%;
+            height: 100%;
+        }
+
+        .leftContainer {
+            width: 273px;
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            background: red;
+        }
+
+        div#rightContainer {
+            background: white;
+        }
+
+        /*modify(jquery-splitter): splitter_panel*/
+        .splitter_panel .hsplitter {
+            background-color: #f1f1f1;
+            cursor: row-resize;
+            z-index: 800;
+            height: 10px;
+            background: url(images/handle-h.png) no-repeat;
+            background-position: 250px 0 !important;
+            margin-top: 3px !important;
+        }
+
+        .splitter_panel .vsplitter {
+            background-color: #f1f1f1;
+            cursor: col-resize;
+            z-index: 799;
+            width: 10px;
+            background: url(images/handle-v.png) no-repeat;
+            background-position: 0 300px !important;
+            margin-left: 4px !important;
+        }
+    </style>
+</head>
+<body ng-app="TaskApp">
+<div class="container-fluid main" data-ng-controller="TaskCtrl">
+    <div class="row tab-pane-row" id='mainContainer' style="width: 100%; height:100%">
+        <div class="" id='leftContainer'>
+            <div class="row pos-relative" id="topLeft">
+                <textarea ui-codemirror="data1.opts" ng-model="data1.content"></textarea>
+                <!--<textarea ui-codemirror="data1.opts" ng-model="data1.content"></textarea>-->
+                <!--<textarea ui-codemirror="input.opts" data-ng-model="input.model" id="inputParameters" col="50" rows="10"></textarea>-->
+                <div class="task-label-wrapper">
+                    <label class="small-label">Input</label>
+                </div>
+            </div>
+
+            <div class="row pos-relative" id="bottomLeft">
+                <textarea id="behaviour" col="50" rows="10"></textarea>
+
+                <div class="task-label-wrapper">
+                    <label class="small-label">Behaviour</label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="" id="rightContainer">
+            <div class="row pos-relative" id="topRight">
+                <textarea col="50" rows="10" id="resultCode"></textarea>
+
+                <div class="task-label-wrapper">
+                    <label class="small-label">Output</label>
+                </div>
+            </div>
+
+            <div class="row task-result" id="bottomRight">
+                <div class="task-label-wrapper">
+                    <label class="small-label small-label-light">Result</label>
+                </div>
+                <div id="output"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.write('<base href="' + document.location + '" />');
+    angular.module('ui-codemirror', ['ui.bootstrap', 'ui.codemirror'])
+            .controller('MainCtrl', function ($scope) {
+
+                var defaultOptions = function (title, mode, content) {
+                    return {
+                        title: title,
+                        content: content,
+                        opts: {
+                            mode: mode,
+                            lineWrapping: true,
+                            lineNumbers: true
+                        }
+                    }
+                };
+
+                $scope.data1 = defaultOptions('HTML', 'text/html', '<div></div>');
+                $scope.data2 = defaultOptions('Javascript', 'javascript', 'var x = 10;');
+                $scope.data3 = defaultOptions('HTML', 'text/html', '<div></div>');
+
+
+            });
+
+    //    (function(){
+    //
+    //        angular.module('TaskApp', ['ui.codemirror'])
+    //                .controller('TaskCtrl', function($scope){
+    //find element to apply jquery-splitter
+    //                    jQuery(function($){
+    //
+    //                        $('#mainContainer').split({
+    //                            orientation: 'vertical',
+    //                            limit: 100,
+    //                            position: '50%'
+    //                        });
+    //                        $('#leftContainer').split({
+    //                            orientation: 'horizontal',
+    //                            limit: 100
+    //                        });
+    //                        $('#rightContainer').split({
+    //                            orientation: 'horizontal',
+    //                            limit: 100
+    //                        });
+    //                    });
+    // model for textarea
+    //                    var defaultOptions = function(title, mode, content) {
+    //                        return {
+    //                            title: title,
+    //                            content: content,
+    //                            opts: {
+    //                                mode: mode,
+    //                                lineWrapping: true,
+    //                                lineNumbers: true
+    //                            }
+    //                        }
+    //                    };
+    //                    // apply ui-codemirror
+    //                    $scope.data1 = defaultOptions('HTML', 'text/html', '<div></div>');
+    //                    $scope.data2 = defaultOptions('Javascript', 'javascript', 'var x = 10;');
+    //                    $scope.data3 = defaultOptions('HTML', 'text/html', '<div></div>');
+    //
+    //                })
+    //    })();
+</script>
+</body>
+
+</html>

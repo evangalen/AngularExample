@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" data-ng-app="ExampleApp">
+<head>
+    <meta charset="utf-8"/>
+    <title>jQuery Splitter Demo</title>
+    <meta name="Description" content="jQuery Splitter Demo"/>
+    <link rel="shortcut icon" href=""/>
+    <link href="../../bower_components/jquery.splitter/css/jquery.splitter.css" rel="stylesheet"/>
+    <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../../bower_components/angular/angular.js"></script>
+    <script src="../../bower_components/jquery.splitter/js/jquery.splitter-0.14.0.js"></script>
+
+    <!--[if IE]>
+    <![endif]-->
+    <style>
+        #spliter2 .a {
+            background-color: #2d2d2d;
+        }
+
+        #spliter2 .b {
+            background-color: #2d002d;
+        }
+
+        #foo {
+            background-color: #E92727;
+        }
+
+        #x {
+            background-color: #EFBD73;
+        }
+
+        #y {
+            background-color: #EF3e32;
+        }
+
+        #b {
+            background-color: #73A4EF;
+        }
+
+        #bar {
+            background-color: #BEE927;
+        }
+    </style>
+
+    <script>
+        (function () {
+            'use strict';
+            angular.module('ExampleApp', [])
+                    .controller('MainCtrl', function ($scope) {
+                        $scope.title = 'Dynamic Template';
+                        $scope.html = '<div>demo</div>\n<input type="text" data-ng-model="title">';
+                    })
+                    .directive('dynamicTemplate', function ($compile) {
+                        return{
+                            restrict: 'EA',
+                            link: function (scope, element) {
+//                                scope.$watch(scope.html, function(){
+//                                    console.log('asfd');
+//                                });
+                                scope.$watch('html', function (newValue) {
+                                    var content = $compile(newValue)(scope);
+                                    element.html(content);
+                                });
+                            }
+                        }
+                    })
+        })();
+    </script>
+</head>
+<body data-ng-controller="MainCtrl">
+<div class="container">
+    <div class="row">
+        <textarea name="" id="" cols="30" rows="10" data-ng-model="html"></textarea>
+
+        <div dynamic-template="html"></div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="ui-codemirror">
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <meta charset="utf-8"/>
+    <title>Codemirror in tabs demo</title>
+    <!-- css -->
+    <link href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="../../bower_components/codemirror/lib/codemirror.css"/>
+
+    <!-- /css -->
+</head>
+
+<body>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Codemirror in tabs demo</h1>
+    </div>
+</div>
+
+<section ng-controller="MainCtrl">
+    <div class="container">
+        <div class="row">
+            <tabset>
+                <tab heading="General">
+                    <div class="col-md-12">
+                        <div ui-codemirror="tab.opts" ng-model="tab.content"></div>
+                    </div>
+                </tab>
+                <tab heading="Code" select="selectedTab()">
+                    <div class="col-md-4">
+                        <textarea ui-codemirror="data1.opts" ng-model="data1.content"></textarea>
+                    </div>
+                    <div class="col-md-4">
+                        <div ui-codemirror="data2.opts" ng-model="data2.content"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <textarea ui-codemirror="data3.opts" ng-model="data3.content"></textarea>
+                    </div>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+</section>
+
+<!-- js -->
+<script src="../../bower_components/angular/angular.min.js"></script>
+<script src="../../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="../../bower_components/angular-ui-codemirror/ui-codemirror.min.js"></script>
+<script src="../../bower_components/codemirror/lib/codemirror.js"></script>
+<script src="../../bower_components/codemirror/mode/css/css.js"></script>
+<script src="../../bower_components/codemirror/mode/javascript/javascript.js"></script>
+<script src="../../bower_components/codemirror/mode/xml/xml.js"></script>
+
+<script>
+    document.write('<base href="' + document.location + '" />');
+    angular.module('ui-codemirror', ['ui.bootstrap', 'ui.codemirror'])
+            .controller('MainCtrl', function ($scope) {
+
+                var defaultOptions = function (title, mode, content) {
+                    return {
+                        title: title,
+                        content: content,
+                        opts: {
+                            mode: mode,
+                            lineWrapping: true,
+                            lineNumbers: true
+                        }
+                    }
+                };
+
+                $scope.selectedTab = function () {
+                    $scope.data1 = defaultOptions('HTML', 'text/html', '<div></div>');
+                    $scope.data2 = defaultOptions('Javascript', 'javascript', 'var x = 10;');
+                    $scope.data3 = defaultOptions('HTML', 'text/html', '<div></div>');
+                }
+
+            });
+</script>
+<!-- /js -->
+</body>
+
+</html>
