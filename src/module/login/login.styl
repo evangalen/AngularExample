@@ -3,11 +3,40 @@ html, body
 
 /* Custom container */
 .container-full
-  margin 0 auto
-  width 100%
-  min-height 100%
-  background-color #110022
   color #eee
   overflow hidden
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100%;
+  color: #eee;
+  overflow: hidden;
+  background: url("../../assets/images/color29.jpg") no-repeat fixed center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #fff;
   .v-center
     margin-top 7%
+
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+#loginPage .logSide .no_account {
+  border-top: 4px solid #e5e5e5;
+  font-size: 14px;
+  margin: 30px 0 100px;
+  padding-top: 15px;
+}
+
+#loginPage .logSide .no_account a {
+  float: right;
+}
