@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html data-ng-app="ExampleApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../bower_components/jquery.splitter/css/jquery.splitter.css"/>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #mainContainer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+
+        #leftContainer {
+            background: #eeeeee;
+        }
+
+        #rightContainer {
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        iframe {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <script>
+
+    </script>
+</head>
+<body data-ng-controller="ExampleCtrl">
+
+<div id="mainContainer">
+    <div id="leftContainer">
+        <ul class="nav nav-sidebar">
+            <li data-ng-repeat="tab in tabs">
+                <a href data-ng-click="changeTab(tab.src)" data-ng-bind="tab.title"></a>
+                <!--<a data-ng-href="tab.homepage">homepage</a>-->
+            </li>
+        </ul>
+    </div>
+    <div id="rightContainer">
+        <iframe data-ng-src="{{src}}" frameborder="0"></iframe>
+    </div>
+</div>
+ <script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/jquery.splitter/js/jquery.splitter-0.14.0.js"></script>
+
+<script>
+    (function () {
+        'use strict';
+        angular.module('ExampleApp', [])
+                .controller('ExampleCtrl', function ($scope) {
+                    jQuery(function () {
+                        $('#mainContainer').split({orientation: 'vertical', limit: 100, position: '20%'});
+                    });
+
+                    function getUrl(url) {
+                        var result = document.URL + url;
+                        return result;
+                    }
+
+                    $scope.tabs = [
+                        {
+                            title: 'ui-codemirror',
+                            'src': getUrl('/ui-codemirror/index.html'),
+                            'homepage': 'https://github.com/mamacdon/orion-codemirror'
+                        },
+                        {
+                            title: 'jquery-splitter',
+                            'src': getUrl('jquery-splitter/index.html'),
+                            'homepage': ''
+                        },
+                        {
+                            title: 'dynamic-template',
+                            'src': getUrl('/dynamic-template/index.html'),
+                            'homepage': ''
+                        },
+                        {
+                            title: 'pure-css-treeview-checkbox',
+                            'src': getUrl('/pure-css-treeview-checkbox/index.html'),
+                            'homepage': ''
+                        },
+                        {
+                            title: 'ui-layout directive',
+                            'src': getUrl('/ui-layout-directive/index.html'),
+                            'homepage': ''
+                        }
+                    ];
+                    $scope.src = $scope.tabs[$scope.tabs.length - 1].src;
+
+                    $scope.changeTab = function (tab) {
+                        $scope.src = tab;
+                    }
+                })
+    })();
+
+</script>
+</body>
+</html>

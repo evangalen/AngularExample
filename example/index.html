@@ -1,72 +1,157 @@
 <!DOCTYPE html>
 <html data-ng-app="ExampleApp">
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="../bower_components/jquery.splitter/css/jquery.splitter.css"/>
-    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
+<head>
+	<title>Layout with Accordion</title>
 
-        #mainContainer {
-            position: absolute;
-            width: 100%;
+	<link rel="stylesheet" type="text/css" href="../bower_components/jquery-ui-layout/source/stable/layout-default.css">
+
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+
+	<!-- CUSTOMIZE/OVERRIDE THE DEFAULT CSS -->
+	<style type="text/css">
+
+	/* remove padding and scrolling from elements that contain an Accordion OR a content-div */
+	.ui-layout-center ,	/* has content-div */
+	.ui-layout-west ,	/* has Accordion */
+	.ui-layout-east ,	/* has content-div ... */
+	.ui-layout-east .ui-layout-content { /* content-div has Accordion */
+		padding: 0;
+		overflow: hidden;
+	}
+	.ui-layout-center P.ui-layout-content {
+		line-height:	1.4em;
+		margin:			0; /* remove top/bottom margins from <P> used as content-div */
+	}
+	h3, h4 { /* Headers & Footer in Center & East panes */
+		font-size:		1.1em;
+		background:		#EEF;
+		border:			1px solid #BBB;
+		border-width:	0 0 1px;
+		padding:		7px 10px;
+		margin:			0;
+	}
+	.ui-layout-east h4 { /* Footer in East-pane */
+		font-size:		0.9em;
+		font-weight:	normal;
+		border-width:	1px 0 0;
+	}
+
+	iframe {
             height: 100%;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-        }
-
-        #leftContainer {
-            background: #eeeeee;
-        }
-
-        #rightContainer {
-            background: #ffffff;
-            overflow: hidden;
-        }
-
-        iframe {
-            height: 100%;
             width: 100%;
         }
-    </style>
-    <script>
+	</style>
+	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="../bower_components/jquery-ui/jquery-ui.js"></script>
+	<script type="text/javascript" src="../bower_components/jquery-ui-layout/source/stable/jquery.layout.js"></script>
+	<script type="text/javascript" src="../bower_components/jquery-ui-layout/source/stable/callbacks/jquery.layout.resizePaneAccordions.js"></script>
 
-    </script>
+    <script type="text/javascript" src="js/themeswitchertool.js"></script> 
+	<script type="text/javascript" src="js/debug.js"></script>
+
+
 </head>
 <body data-ng-controller="ExampleCtrl">
 
-<div id="mainContainer">
-    <div id="leftContainer">
-        <ul class="nav nav-sidebar">
-            <li data-ng-repeat="tab in tabs">
-                <a href data-ng-click="changeTab(tab.src)" data-ng-bind="tab.title"></a>
-                <!--<a data-ng-href="tab.homepage">homepage</a>-->
-            </li>
-        </ul>
-    </div>
-    <div id="rightContainer">
-        <iframe data-ng-src="{{src}}" frameborder="0"></iframe>
-    </div>
+<!-- <div class="ui-layout-north ui-widget-content" style="display: none;">
+	<div style="float: right; margin-right: 160px;">
+		<button onClick="resizeWidgets()">Resize</button> &nbsp;
+		<button onClick="removeUITheme(); myLayout.resizeAll()">Remove Theme</button>
+	</div>
+	North Pane
+</div> -->
+
+<!-- <div class="ui-layout-south ui-widget-content ui-state-error" style="display: none;"> South Pane </div> -->
+
+<div class="ui-layout-center" style="display: none;"> 
+	<h3 class="ui-widget-header">Center Pane</h3>
+	<div class="ui-layout-content ui-widget-content">
+		<iframe data-ng-src="{{src}}" frameborder="0"></iframe>
+<!-- 		<pre><code>
+$('body').layout({
+    west__size:      300
+,   east__size:      300
+    <i>// RESIZE Accordion widget when panes resize</i>
+,   west__onresize:  $.layout.callbacks.resizePaneAccordions
+,   east__onresize:  $.layout.callbacks.resizePaneAccordions
+});
+
+<i>// ACCORDION - in the West pane</i>
+$("#accordion1").accordion({ heightStyle: "fill" });
+
+<i>// ACCORDION - in the East pane - in a 'content-div'</i>
+$("#accordion2").accordion({
+    heightStyle: "fill"
+,   active:      1 <i>// set active accordion-panel</i>
+});
+		</code></pre> 
+
+.ui-accordion .ui-accordion-content {
+/* padding: 1em 2.2em; */
+border-top: 0;
+overflow: auto;
+}
+	-->
+	</div>
 </div>
- <script src="../bower_components/jquery/dist/jquery.js"></script>
-<script src="../bower_components/angular/angular.js"></script>
-<script src="../bower_components/jquery.splitter/js/jquery.splitter-0.14.0.js"></script>
+
+<div class="ui-layout-west" style="display: none;">
+	<div id="accordion1" class="basic">
+			
+<h3><a href="#" data-ng-bind="tabs[0].title" data-ng-click="changeTab(tabs[0].src)">>Section 1</a></h3>
+				<div>
+					<span style="font-weight: bold;" data-ng-bind="tabs[0].name">title</span><br>
+					
+					<span style="font-weight: bold;">description:</span> <span data-ng-bind="tabs[0].description"></span><br><br>
+					<span style="font-weight: bold;">Requirements:</span> <span data-ng-bind="tabs[0].description"></span><br><br>
+					<span style="font-weight: bold;">Usage:</span> <span data-ng-bind="tabs[0].description"></span>
+				</div>
+
+				<h3><a href="#" data-ng-bind="tabs[1].title" data-ng-click="changeTab(tabs[1].src)">Section 1</a></h3><div></div>
+				<h3><a href="#" data-ng-bind="tabs[2].title" data-ng-click="changeTab(tabs[2].src)">Section 1</a></h3><div></div>
+				<h3><a href="#" data-ng-bind="tabs[3].title" data-ng-click="changeTab(tabs[3].src)">Section 1</a></h3><div></div>
+				<h3><a href="#" data-ng-bind="tabs[4].title" data-ng-click="changeTab(tabs[4].src)">Section 1</a></h3><div></div>
+				<h3><a href="#" data-ng-bind="tabs[5].title" data-ng-click="changeTab(tabs[5].src)">Section 1</a></h3><div></div>
+	</div>
+</div>
+
+</div>
+
 
 <script>
+
+$(document).ready( function() {
+
+		myLayout = $('body').layout({
+			west__size:			300
+		,	east__size:			300
+			// RESIZE Accordion widget when panes resize
+		,	west__onresize:		$.layout.callbacks.resizePaneAccordions
+		,	east__onresize:		$.layout.callbacks.resizePaneAccordions
+		});
+
+		// ACCORDION - in the West pane
+		$("#accordion1").accordion({
+			heightStyle:	"fill"
+			,	active:			4
+		});
+
+
+		// THEME SWITCHER
+		addThemeSwitcher('.ui-layout-north',{ top: '12px', right: '5px' });
+		// if a new theme is applied, it could change the height of some content,
+		// so call resizeAll to 'correct' any header/footer heights affected
+		// NOTE: this is only necessary because we are changing CSS *AFTER LOADING* using themeSwitcher
+		setTimeout( myLayout.resizeAll, 1000 ); /* allow time for browser to re-render with new theme */
+
+	});
+
     (function () {
         'use strict';
         angular.module('ExampleApp', [])
                 .controller('ExampleCtrl', function ($scope) {
-                    jQuery(function () {
-                        $('#mainContainer').split({orientation: 'vertical', limit: 100, position: '20%'});
-                    });
-
+                   
                     function getUrl(url) {
                         var result = document.URL + url;
                         return result;
@@ -74,9 +159,17 @@
 
                     $scope.tabs = [
                         {
+                            title: 'ui-layout',
+                            name: 'UI.Layout directive',
+                            description: 'This directive allows you to split ! http://angular-ui.github.io/ui-layout/',
+                            src: getUrl('/ui-codemirror/index.html'),
+                            homepage: 'https://github.com/mamacdon/orion-codemirror'
+                        },{
                             title: 'ui-codemirror',
-                            'src': getUrl('/ui-codemirror/index.html'),
-                            'homepage': 'https://github.com/mamacdon/orion-codemirror'
+                            name: 'UI.Layout directive',
+                            description: 'This directive allows you to split ! http://angular-ui.github.io/ui-layout/',
+                            src: getUrl('/ui-codemirror/index.html'),
+                            homepage: 'https://github.com/mamacdon/orion-codemirror'
                         },
                         {
                             title: 'jquery-splitter',
@@ -109,4 +202,4 @@
 
 </script>
 </body>
-</html>
+</html> 
