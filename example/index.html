@@ -1,204 +1,195 @@
 <!DOCTYPE html>
 <html data-ng-app="ExampleApp">
+
 <head>
-	<title>Layout with Accordion</title>
+    <title>Layout with Accordion</title>
 
-	<link rel="stylesheet" type="text/css" href="../bower_components/jquery-ui-layout/source/stable/layout-default.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/jquery-ui-layout/source/stable/layout-default.css">
 
-	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 
-	<!-- CUSTOMIZE/OVERRIDE THE DEFAULT CSS -->
-	<style type="text/css">
-
-	/* remove padding and scrolling from elements that contain an Accordion OR a content-div */
-	.ui-layout-center ,	/* has content-div */
-	.ui-layout-west ,	/* has Accordion */
-	.ui-layout-east ,	/* has content-div ... */
-	.ui-layout-east .ui-layout-content { /* content-div has Accordion */
-		padding: 0;
-		overflow: hidden;
-	}
-	.ui-layout-center P.ui-layout-content {
-		line-height:	1.4em;
-		margin:			0; /* remove top/bottom margins from <P> used as content-div */
-	}
-	h3, h4 { /* Headers & Footer in Center & East panes */
-		font-size:		1.1em;
-		background:		#EEF;
-		border:			1px solid #BBB;
-		border-width:	0 0 1px;
-		padding:		7px 10px;
-		margin:			0;
-	}
-	.ui-layout-east h4 { /* Footer in East-pane */
-		font-size:		0.9em;
-		font-weight:	normal;
-		border-width:	1px 0 0;
-	}
-
-	iframe {
+    <!-- CUSTOMIZE/OVERRIDE THE DEFAULT CSS -->
+    <style type="text/css">
+        /* remove padding and scrolling from elements that contain an Accordion OR a content-div */
+        
+        .ui-layout-center,
+        /* has content-div */
+        
+        .ui-layout-west,
+        /* has Accordion */
+        
+        .ui-layout-east,
+        /* has content-div ... */
+        
+        .ui-layout-east .ui-layout-content {
+            /* content-div has Accordion */
+            
+            padding: 0;
+            overflow: hidden;
+        }
+        .ui-layout-center P.ui-layout-content {
+            line-height: 1.4em;
+            margin: 0;
+            /* remove top/bottom margins from <P> used as content-div */
+        }
+        h3,
+        h4 {
+            /* Headers & Footer in Center & East panes */
+            
+            font-size: 1.1em;
+            background: #EEF;
+            border: 1px solid #BBB;
+            border-width: 0 0 1px;
+            padding: 7px 10px;
+            margin: 0;
+        }
+        .ui-layout-east h4 {
+            /* Footer in East-pane */
+            
+            font-size: 0.9em;
+            font-weight: normal;
+            border-width: 1px 0 0;
+        }
+        iframe {
             height: 100%;
             width: 100%;
         }
-	</style>
-	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
-	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
-	<script type="text/javascript" src="../bower_components/jquery-ui/jquery-ui.js"></script>
-	<script type="text/javascript" src="../bower_components/jquery-ui-layout/source/stable/jquery.layout.js"></script>
-	<script type="text/javascript" src="../bower_components/jquery-ui-layout/source/stable/callbacks/jquery.layout.resizePaneAccordions.js"></script>
-
-    <script type="text/javascript" src="js/themeswitchertool.js"></script> 
-	<script type="text/javascript" src="js/debug.js"></script>
-
+    </style>
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="../bower_components/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" src="../bower_components/jquery-ui-layout/source/stable/jquery.layout.js"></script>
+    <script type="text/javascript" src="../bower_components/jquery-ui-layout/source/stable/callbacks/jquery.layout.resizePaneAccordions.js"></script>
 
 </head>
+
 <body data-ng-controller="ExampleCtrl">
 
-<!-- <div class="ui-layout-north ui-widget-content" style="display: none;">
-	<div style="float: right; margin-right: 160px;">
-		<button onClick="resizeWidgets()">Resize</button> &nbsp;
-		<button onClick="removeUITheme(); myLayout.resizeAll()">Remove Theme</button>
-	</div>
-	North Pane
-</div> -->
+    <div class="ui-layout-center" style="display: none;">
+        <h3 class="ui-widget-header">Center Pane</h3>
+        <div class="ui-layout-content ui-widget-content">
+            <iframe data-ng-src="{{src}}" frameborder="0"></iframe>
+        </div>
+    </div>
 
-<!-- <div class="ui-layout-south ui-widget-content ui-state-error" style="display: none;"> South Pane </div> -->
+    <div class="ui-layout-west" style="display: none;">
+        <div id="accordion1" class="basic">
 
-<div class="ui-layout-center" style="display: none;"> 
-	<h3 class="ui-widget-header">Center Pane</h3>
-	<div class="ui-layout-content ui-widget-content">
-		<iframe data-ng-src="{{src}}" frameborder="0"></iframe>
-<!-- 		<pre><code>
-$('body').layout({
-    west__size:      300
-,   east__size:      300
-    <i>// RESIZE Accordion widget when panes resize</i>
-,   west__onresize:  $.layout.callbacks.resizePaneAccordions
-,   east__onresize:  $.layout.callbacks.resizePaneAccordions
-});
+            <h3><a href="#" data-ng-bind="tabs[0].title" data-ng-click="changeTab(tabs[0].src)">>Section 1</a></h3>
+            <div>
+                <span style="font-weight: bold;" data-ng-bind="tabs[0].name">title</span>
+                <br>
 
-<i>// ACCORDION - in the West pane</i>
-$("#accordion1").accordion({ heightStyle: "fill" });
+                <span style="font-weight: bold;">description:</span> <span data-ng-bind="tabs[0].description"></span>
+                <br>
+                <br>
+                <span style="font-weight: bold;">Requirements:</span> <span data-ng-bind="tabs[0].description"></span>
+                <br>
+                <br>
+                <span style="font-weight: bold;">Usage:</span> <span data-ng-bind="tabs[0].description"></span>
+            </div>
 
-<i>// ACCORDION - in the East pane - in a 'content-div'</i>
-$("#accordion2").accordion({
-    heightStyle: "fill"
-,   active:      1 <i>// set active accordion-panel</i>
-});
-		</code></pre> 
+            <h3><a href="#" data-ng-bind="tabs[1].title" data-ng-click="changeTab(tabs[1].src)">Section 1</a></h3>
+            <div></div>
+            <h3><a href="#" data-ng-bind="tabs[2].title" data-ng-click="changeTab(tabs[2].src)">Section 1</a></h3>
+            <div></div>
+            <h3><a href="#" data-ng-bind="tabs[3].title" data-ng-click="changeTab(tabs[3].src)">Section 1</a></h3>
+            <div></div>
+            <h3><a href="#" data-ng-bind="tabs[4].title" data-ng-click="changeTab(tabs[4].src)">Section 1</a></h3>
+            <div></div>
+            <h3><a href="#" data-ng-bind="tabs[5].title" data-ng-click="changeTab(tabs[5].src)">Section 1</a></h3>
+            <div></div>
+            <h3><a href="#" data-ng-bind="tabs[6].title" data-ng-click="changeTab(tabs[6].src)">Section 1</a></h3>
+            <div></div>
 
-.ui-accordion .ui-accordion-content {
-/* padding: 1em 2.2em; */
-border-top: 0;
-overflow: auto;
-}
-	-->
-	</div>
-</div>
+        </div>
+    </div>
 
-<div class="ui-layout-west" style="display: none;">
-	<div id="accordion1" class="basic">
-			
-<h3><a href="#" data-ng-bind="tabs[0].title" data-ng-click="changeTab(tabs[0].src)">>Section 1</a></h3>
-				<div>
-					<span style="font-weight: bold;" data-ng-bind="tabs[0].name">title</span><br>
-					
-					<span style="font-weight: bold;">description:</span> <span data-ng-bind="tabs[0].description"></span><br><br>
-					<span style="font-weight: bold;">Requirements:</span> <span data-ng-bind="tabs[0].description"></span><br><br>
-					<span style="font-weight: bold;">Usage:</span> <span data-ng-bind="tabs[0].description"></span>
-				</div>l
-
-				<h3><a href="#" data-ng-bind="tabs[1].title" data-ng-click="changeTab(tabs[1].src)">Section 1</a></h3><div></div>
-				<h3><a href="#" data-ng-bind="tabs[2].title" data-ng-click="changeTab(tabs[2].src)">Section 1</a></h3><div></div>
-				<h3><a href="#" data-ng-bind="tabs[3].title" data-ng-click="changeTab(tabs[3].src)">Section 1</a></h3><div></div>
-				<h3><a href="#" data-ng-bind="tabs[4].title" data-ng-click="changeTab(tabs[4].src)">Section 1</a></h3><div></div>
-				<h3><a href="#" data-ng-bind="tabs[5].title" data-ng-click="changeTab(tabs[5].src)">Section 1</a></h3><div></div>
-	</div>
-</div>
-
-</div>
+    </div>
 
 
-<script>
+    <script>
+        $(document).ready(function() {
 
-$(document).ready( function() {
+            myLayout = $('body').layout({
+                west__size: 300,
+                east__size: 300
+                    // RESIZE Accordion widget when panes resize
+                    ,
+                west__onresize: $.layout.callbacks.resizePaneAccordions,
+                east__onresize: $.layout.callbacks.resizePaneAccordions
+            });
 
-		myLayout = $('body').layout({
-			west__size:			300
-		,	east__size:			300
-			// RESIZE Accordion widget when panes resize
-		,	west__onresize:		$.layout.callbacks.resizePaneAccordions
-		,	east__onresize:		$.layout.callbacks.resizePaneAccordions
-		});
+            // ACCORDION - in the West pane
+            $("#accordion1").accordion({
+                heightStyle: "fill",
+                active: 4
+            });
 
-		// ACCORDION - in the West pane
-		$("#accordion1").accordion({
-			heightStyle:	"fill"
-			,	active:			4
-		});
+            // THEME SWITCHER
+            // addThemeSwitcher('.ui-layout-north', {
+            //     top: '12px',
+            //     right: '5px'
+            // });
+            // if a new theme is applied, it could change the height of some content,
+            // so call resizeAll to 'correct' any header/footer heights affected
+            // NOTE: this is only necessary because we are changing CSS *AFTER LOADING* using themeSwitcher
+            setTimeout(myLayout.resizeAll, 1000); /* allow time for browser to re-render with new theme */
 
-		// THEME SWITCHER
-		addThemeSwitcher('.ui-layout-north',{ top: '12px', right: '5px' });
-		// if a new theme is applied, it could change the height of some content,
-		// so call resizeAll to 'correct' any header/footer heights affected
-		// NOTE: this is only necessary because we are changing CSS *AFTER LOADING* using themeSwitcher
-		setTimeout( myLayout.resizeAll, 1000 ); /* allow time for browser to re-render with new theme */
+        });
 
-	});
+        (function() {
+            'use strict';
+            angular.module('ExampleApp', [])
+                .controller('ExampleCtrl', function($scope) {
 
-    (function () {
-        'use strict';
-        angular.module('ExampleApp', [])
-                .controller('ExampleCtrl', function ($scope) {
-                   
                     function getUrl(url) {
                         var result = document.URL + url;
                         return result;
                     }
 
-                    $scope.tabs = [
-                        {
-                            title: 'ui-layout',
-                            name: 'UI.Layout directive',
-                            description: 'This directive allows you to split ! http://angular-ui.github.io/ui-layout/',
-                            src: getUrl('/ui-codemirror/index.html'),
-                            homepage: 'https://github.com/mamacdon/orion-codemirror'
-                        },{
-                            title: 'ui-codemirror',
-                            name: 'UI.Layout directive',
-                            description: 'This directive allows you to split ! http://angular-ui.github.io/ui-layout/',
-                            src: getUrl('/ui-codemirror/index.html'),
-                            homepage: 'https://github.com/mamacdon/orion-codemirror'
-                        },
-                        {
-                            title: 'jquery-splitter',
-                            'src': getUrl('jquery-splitter/index.html'),
-                            'homepage': ''
-                        },
-                        {
-                            title: 'dynamic-template',
-                            'src': getUrl('/dynamic-template/index.html'),
-                            'homepage': ''
-                        },
-                        {
-                            title: 'pure-css-treeview-checkbox',
-                            'src': getUrl('/pure-css-treeview-checkbox/index.html'),
-                            'homepage': ''
-                        },
-                        {
-                            title: 'ui-layout directive',
-                            'src': getUrl('/ui-layout-directive/index.html'),
-                            'homepage': ''
-                        }
+                    $scope.tabs = [{
+                        title: 'ui-layout',
+                        name: 'UI.Layout directive',
+                        description: 'This directive allows you to split ! http://angular-ui.github.io/ui-layout/',
+                        src: getUrl('/ui-codemirror/index.html'),
+                        homepage: 'https://github.com/mamacdon/orion-codemirror'
+                    }, {
+                        title: 'ui-codemirror',
+                        name: 'UI.Layout directive',
+                        description: 'This directive allows you to split ! http://angular-ui.github.io/ui-layout/',
+                        src: getUrl('/ui-codemirror/index.html'),
+                        homepage: 'https://github.com/mamacdon/orion-codemirror'
+                    }, {
+                        title: 'jquery-splitter',
+                        'src': getUrl('jquery-splitter/index.html'),
+                        'homepage': ''
+                    }, {
+                        title: 'dynamic-template',
+                        'src': getUrl('/dynamic-template/index.html'),
+                        'homepage': ''
+                    }, {
+                        title: 'pure-css-treeview-checkbox',
+                        'src': getUrl('/pure-css-treeview-checkbox/index.html'),
+                        'homepage': ''
+                    }, {
+                        title: 'ui-layout directive',
+                        'src': getUrl('/ui-layout-directive/index.html'),
+                        'homepage': ''
+                    }, {
+                        title: 'ui-layout and ui-boostrap',
+                        'src': getUrl('/ui-layout-and-ui-bootstrap/index2.html'),
+                        'homepage': ''
+                    }
                     ];
                     $scope.src = $scope.tabs[$scope.tabs.length - 1].src;
 
-                    $scope.changeTab = function (tab) {
+                    $scope.changeTab = function(tab) {
                         $scope.src = tab;
                     }
                 })
-    })();
-
-</script>
+        })();
+    </script>
 </body>
-</html> 
+
+</html>

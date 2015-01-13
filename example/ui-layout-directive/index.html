@@ -7,8 +7,8 @@
 
   <title>UI.Layout : holy grail demo</title>
 
-  <link rel="stylesheet" type="text/css" href="../../../bower_components/bootstrap/dist/css/bootstrap.css"/>
-  <link rel="stylesheet" type="text/css" href="../../../bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+  <!-- <link rel="stylesheet" type="text/css" href="../../../bower_components/bootstrap/dist/css/bootstrap.css"/> -->
+  <!-- <link rel="stylesheet" type="text/css" href="../../../bower_components/bootstrap/dist/css/bootstrap-theme.css"/> -->
   <link rel="stylesheet" type="text/css" href="../../../bower_components/angular-ui-layout/ui-layout.css"/>
 
   <style type="text/css">
@@ -24,12 +24,27 @@
 .preview-back {
   background: #eee url("http://placehold.it/400x300/eee/666&text=PREVIEW") no-repeat center;
 }
-.glyphicon-chevron-left,
-.glyphicon-chevron-right,
-.glyphicon-chevron-up,
-.glyphicon-chevron-down {
-  color: #aaa;
+
+.ui-layout-row > .ui-splitbar{
+  background-color: #f1f1f1;
+cursor: row-resize;
+z-index: 800;
+height: 10px;
+background: url(images/handle-h.png) no-repeat;
+background-position: 50% !important;
+margin-top: 3px !important;
 }
+
+.ui-layout-column > .ui-splitbar {
+background-color: #f1f1f1;
+cursor: col-resize;
+z-index: 799;
+width: 10px;
+background: url(images/handle-v.png) no-repeat;
+background-position: 50% !important;
+margin-left: 4px !important;
+}
+
   </style>
 </head>
 
