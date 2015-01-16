@@ -31,10 +31,11 @@
     "angular-cookies": "1.2.28",
     "font-awesome": "~4.2.0",
     "jquery.splitter": "~0.14.0",
-    "angular-ui-layout": "~1.0.5",
+    "angular-ui-layout": "~0.0.0",
     "raf": "https://gist.githubusercontent.com/paulirish/1579671/raw/3d42a3a76ed09890434a07be2212f376959e616f/rAF.js",
     "jquery-ui-layout": "~1.4.3",
-    "jquery-ui": "~1.11.2"
+    "jquery-ui": "~1.11.2",
+    "angular-responsive": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.28"

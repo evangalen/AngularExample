@@ -7,15 +7,18 @@
     <script>
 document.write('<base href="' + document.location + '" />');
     </script>
+    <link href="../../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+ <link rel="stylesheet" type="text/css" href="../../../bower_components/angular-ui-layout/ui-layout.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../bower_components/codemirror/lib/codemirror.css"/>
     <style type="text/css">
     body {
   background: white !important;
 }
 
-.ui-splitbar {
+/*.ui-splitbar {
   background: #D0D0D0 !important;
 }
-
+*/
 .header-bar {
   background: blue;
   color: white;
@@ -30,9 +33,31 @@ document.write('<base href="' + document.location + '" />');
   right: 0;
   
 }
+.CodeMirror {
+  border: 1px solid #eee;
+}
+
+.ui-layout-row > .ui-splitbar{
+  background-color: #f1f1f1 !important;
+  cursor: row-resize;
+  margin-top: -5px;
+  background: #f1f1f1 url(images/handle-h.png) no-repeat !important;
+  background-position: 50% !important;
+  z-index: 110;
+}
+
+.ui-layout-column > .ui-splitbar {
+  background-color: #f1f1f1 !important;
+  cursor: col-resize;
+  background: #f1f1f1 url(images/handle-v.png) no-repeat !important;
+  background-position: 50% !important;
+  z-index: 120;
+}
+
+.CodeMirror{height:100% !important;}
+.CodeMirror-gutters{height:100% !important;}
+
     </style>
-<link href="../../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
- <link rel="stylesheet" type="text/css" href="../../../bower_components/angular-ui-layout/ui-layout.css"/>
 
 </head>
 
@@ -40,32 +65,9 @@ document.write('<base href="' + document.location + '" />');
     <div class="main-content">
         <tabset>
             <tab heading="Tab 1">
-                <div class="col-md-12" style="width: 100%; height: 500px">
-                    <div ui-layout>
-                        <div ui-layout-container>
-                            <div ui-layout="{flow : 'column'}">
-                                <div ui-layout-container>
-                                    <div ui-layout="{flow: 'row'}">
-                                        <div ui-layout-container class=" input-back">
-                                        </div>
-                                        <div ui-layout-container class=" output-back">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div ui-layout-container>
-                                    <div ui-layout="{flow: 'row'}">
-                                        <div ui-layout-container class=" js-back">
-                                        </div>
-                                        <div ui-layout-container class=" preview-back">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                Tab 1 
             </tab>
-            <tab heading="Tab 2">
+            <tab heading="Tab 2" select="selectedTab()">
                 <div class="col-md-12" style="width: 100%; height: 500px">
                     <div ui-layout>
                         <div ui-layout-container>
@@ -73,14 +75,17 @@ document.write('<base href="' + document.location + '" />');
                                 <div ui-layout-container>
                                     <div ui-layout="{flow: 'row'}">
                                         <div ui-layout-container class=" input-back">
+                                            <textarea ui-codemirror="data1.opts" ng-model="data1.content"></textarea>
                                         </div>
                                         <div ui-layout-container class=" output-back">
+                                            <textarea ui-codemirror="data2.opts" ng-model="data2.content"></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div ui-layout-container>
                                     <div ui-layout="{flow: 'row'}">
                                         <div ui-layout-container class=" js-back">
+                                            <textarea ui-codemirror="data3.opts" ng-model="data3.content"></textarea>
                                         </div>
                                         <div ui-layout-container class=" preview-back">
                                         </div>
@@ -94,20 +99,40 @@ document.write('<base href="' + document.location + '" />');
         </tabset>
     </div>
 
-<!-- <script src="../../../bower_components/jquery/dist/jquery.min.js"></script> -->
-<!-- <script src="../../../bower_components/angular/angular.min.js"></script> -->
-<!-- <script src="../../../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script> -->
-
-
-<script data-semver="1.2.28" src="http://code.angularjs.org/1.2.28/angular.js" data-require="angular.js@1.2.x"></script>
-    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.2.js"></script>
+<!-- js -->
+<script src="../../../bower_components/angular/angular.min.js"></script>
+<script src="../../../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="../../../bower_components/angular-ui-codemirror/ui-codemirror.min.js"></script>
+<script src="../../../bower_components/codemirror/lib/codemirror.js"></script>
+<script src="../../../bower_components/codemirror/mode/css/css.js"></script>
+<script src="../../../bower_components/codemirror/mode/javascript/javascript.js"></script>
+<script src="../../../bower_components/codemirror/mode/xml/xml.js"></script>
+<script src="../../../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    
     <script src="ui-layout.js"></script>
 
     <script type="text/javascript">
-        var app = angular.module('myApp', ['ui.bootstrap', 'ui.layout']);
+        var app = angular.module('myApp', ['ui.bootstrap', 'ui.layout', 'ui.codemirror']);
 
         app.controller('MainCtrl', function($scope) {
           $scope.content = 'Hello World';
+          var defaultOptions = function (title, mode, content) {
+                    return {
+                        title: title,
+                        content: content,
+                        opts: {
+                            mode: mode,
+                            lineWrapping: true,
+                            lineNumbers: true
+                        }
+                    }
+                };
+
+                $scope.selectedTab = function () {
+                    $scope.data1 = defaultOptions('HTML', 'text/html', '<div></div>');
+                    $scope.data2 = defaultOptions('Javascript', 'javascript', 'var x = 10;');
+                    $scope.data3 = defaultOptions('HTML', 'text/html', '<div></div>');
+                }
         });
 
         app.controller('TabsDemoCtrl', function ($scope) {
